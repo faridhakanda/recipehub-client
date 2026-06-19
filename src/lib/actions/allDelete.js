@@ -1,0 +1,1 @@
+const SEVER = process.env.SERVER_URL;

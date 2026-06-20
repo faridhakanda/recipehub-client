@@ -14,10 +14,10 @@ export async function DashboardSidebar() {
     const user = await getUserSession();
     const userItems = [
         { icon: House, href: "/dashboard/user", label: "Home" },
-        { icon: Magnifier, href: "/dashboard/user/jobs", label: "Jobs" },
-        { icon: Person, href: "/dashboard/saved-job", label: 'Saved Job'},
-        // { icon: Bell, href: "/dashboard/seeker/jobs/new", label: "Post A Job" },
-        { icon: Briefcase, href: "/dashboard/seeker/applications", label: "Applied Job" },
+        { icon: Magnifier, href: "/dashboard/user/recipe", label: "Recipe" },
+        { icon: Person, href: "/dashboard/user/saved-recipe", label: 'Saved Recipe'},
+        { icon: Bell, href: "/dashboard/user/add-recipe", label: "Add Recipe" },
+        { icon: Briefcase, href: "/dashboard/user/favorite", label: "Favorite Recipe" },
         { icon: Envelope, href: "/messages", label: "Messages" },
         { icon: Person, href: "/profile", label: "Profile" },
         { icon: Gear, href: "/settings", label: "Settings" },

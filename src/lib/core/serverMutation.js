@@ -1,6 +1,6 @@
 const SERVER_URL = process.env.SERVER_URL;
 
-export const severMutation = async(path, data, method='POST') => {
+export const serverMutation = async(path, data, method='POST') => {
     const res = await fetch(`${SERVER_URL}${path}`, {
         method: method,
         headers: {

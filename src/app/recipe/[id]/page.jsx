@@ -1,5 +1,16 @@
+import { getRecipeById } from '@/lib/actions/allGet';
 import Link from 'next/link';
 import React from 'react';
+
+
+export const generateMetadata = async({ params }) => {
+    const { id } = await params;
+    //const recipe = await  getRecipeById(id);
+    return {
+        title: `Farid Akanda ${id}`,
+        description: `Chicken masala is made by Farid Akanda ${id}`
+    }
+}
 
 const RecipeDetailsPage = async ({ params }) => {
     const { id } = await params;

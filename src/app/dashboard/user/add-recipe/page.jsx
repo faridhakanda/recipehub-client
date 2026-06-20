@@ -8,7 +8,8 @@ const AddRecipe = async() => {
     return (
         <div>
             <h2>Add Recipe</h2>
-            <PostRecipeForm user={user}/>
+            {/* <AddRecipe user={user} /> */}
+            {/* <PostRecipeForm user={user}/> */}
         </div>
     );
 };

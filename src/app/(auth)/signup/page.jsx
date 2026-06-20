@@ -2,14 +2,16 @@
 
 
 import { authClient } from "@/lib/auth-client";
-import {Check} from "@gravity-ui/icons";
+import {ArrowUpToLine, Check} from "@gravity-ui/icons";
 import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const SignUpPage = () => {
-    const router = useRouter();
+const router = useRouter();
 
+  
   const handleSignUp = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -18,7 +20,7 @@ const SignUpPage = () => {
         name: user?.name,
         email: user?.email,
         password: user?.password,
-        photoUrl: user?.photoUrl,
+        image: user?.imageUrl,
         role: "user",
     })
     if (data) {
@@ -48,13 +50,6 @@ const SignUpPage = () => {
         isRequired
         name="email"
         type="email"
-        // validate={(value) => {
-        //   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-        //     return "Please enter a valid email address";
-        //   }
-
-        //   return null;
-        // }}
       >
         <Label>Email</Label>
         <Input placeholder="john@example.com" />
@@ -77,7 +72,7 @@ const SignUpPage = () => {
           if (!/[a-z]/.test(value)) {
             return "Password must contain at least one lowercase letter";
           }
-
+          
           return null;
         }}
       >
@@ -90,14 +85,13 @@ const SignUpPage = () => {
       {/* Photo Url field */}
       <TextField
         isRequired
-        name="photoUrl"
+        name="imageUrl"
         type="url"
       >
-        <Label>Photo Url</Label>
+        <Label>Image Url</Label>
         <Input placeholder="http://imgbb.co/profilePic.png" />
         <FieldError />
-      </TextField>
-
+      </TextField> 
       <div className="flex gap-2">
         <Button className={'w-full'} type="submit">
           <Check />

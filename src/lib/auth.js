@@ -14,10 +14,10 @@ export const auth = betterAuth({
     emailAndPassword: {
         enabled: true,
     },
-
+    
     user: {
         additionalFields: {
-            photoUrl: {
+            image: {
                 default: "http://imgbb.co/userProfile.png"
             },
             role: {

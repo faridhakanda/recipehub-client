@@ -68,6 +68,12 @@ const Navbar = () => {
                         <Link href={'/'}>Home</Link>
                         <Link href={'/recipe'}>BrowseRecipe</Link>
                         <Link href={'/dashboard'}>Dashboard</Link>
+                        <Image 
+                            src={user?.image || '/avatar.png'}
+                            alt={user?.name || 'User Avatar'}
+                            width={32}
+                            height={32}
+                        />
                         {/* <Image className='border-1  rounded-full' src={imageUrl ? user?.photoUrl : '/avatar.png'} alt={user?.name} width={24} height={24} /> */}
                         {/* <Link href={'/plans'}>Plan</Link> */}
                         {/* <h2>{theme} value</h2> */}

@@ -1,117 +1,163 @@
 'use client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import ThemeSwitch from './theme-switch';
 import { useTheme } from 'next-themes';
 import { authClient } from '@/lib/auth-client';
 import Image from 'next/image';
-
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { IoClose } from 'react-icons/io5';
 
 const Navbar = () => {
     const { theme, setTheme } = useTheme();
     const session = authClient.useSession();
-    console.log(session?.data?.user, 'session');
-    //const user = session?.user;
     const user = session?.data?.user;
-    const imageUrl = false;
-    const handleLogout = async()=>{
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleLogout = async () => {
         await authClient.signOut();
-    }
-    return (
-        <div className={`flex justify-around items-center   p-1 text-md font-bold ${theme === 'dark' ? 'bg-blue-300' : 'bg-lime-300'}`}>
-            
-            {!user ? (
-                <div className='flex gap-2 justify-around items-center  p-1 text-md font-bold'>
-                    <Link href={'/'}>RecipeHub</Link>
-                    <div className='flex gap-2'>
-                        <Link href={'/'}>Home</Link>
-                        <Link href={'/recipe'}>BrowseRecipe</Link>
-                        
-                        <Link href={'/plans'}>Plan</Link>
-                        {/* <h2>{theme} value</h2> */}
-                    </div>
-                    <div className='flex gap-2'>
-                        <ThemeSwitch />
-                        <Link href={'/signin'}>SignIn</Link>
-                    </div>
-                </div>
-            ) : user?.role === 'user' ? (
-                <div className='flex justify-around'>
-                    <div>
-                        <Link href={'/'}>RecipeHub</Link>
-                    </div>
-                   
-                    <div className='flex gap-2'>
-                        <Link href={'/'}>Home</Link>
-                        <Link href={'/recipe'}>BrowseRecipe</Link>
-                        <Link href={'/dashboard'}>Dashboard</Link>
-                        {/* <Link href={'/plans'}>Plan</Link> */}
-                        {/* <h2>{theme} value</h2> */}
-                    </div>
-                    <div className='flex gap-2'>
-                        <ThemeSwitch />
-                        <Image 
-                            src={user?.image || '/avatar.png'}
-                            alt={user?.name || 'User Avatar'}
-                            width={32}
-                            height={32}
-                        />
-                        {/* <Image className='border-1  rounded-full' src={imageUrl ? user?.photoUrl : '/avatar.png'} alt={user?.name} width={24} height={24} /> */}
-                        <Link href={'/profile'}>{user?.name}</Link>
-                        <Link onClick={handleLogout} href={'/signin'}>Logout</Link>
-                    </div>
-                </div>
-            ) :  (
-                <div className='flex justify-around'>
-                    <Link href={'/'}>RecipeHub</Link>
-                    <div className='flex gap-2'>
-                        <Link href={'/'}>Home</Link>
-                        <Link href={'/recipe'}>BrowseRecipe</Link>
-                        <Link href={'/dashboard'}>Dashboard</Link>
-                        <Image 
-                            src={user?.image || '/avatar.png'}
-                            alt={user?.name || 'User Avatar'}
-                            width={32}
-                            height={32}
-                        />
-                        {/* <Image className='border-1  rounded-full' src={imageUrl ? user?.photoUrl : '/avatar.png'} alt={user?.name} width={24} height={24} /> */}
-                        {/* <Link href={'/plans'}>Plan</Link> */}
-                        {/* <h2>{theme} value</h2> */}
-                    </div>
-                    <div className='flex gap-2'>
-                        <ThemeSwitch />
-                        <Link href={'/profile'}>{user?.name}</Link>
-                        <Link onClick={handleLogout} href={'/signin'}>Logout</Link>
-                    </div>
-                </div>
+        setIsMenuOpen(false);
+    };
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
+
+    // Navigation links component to avoid duplication
+    const NavLinks = ({ mobile = false }) => (
+        <>
+            <Link href={'/'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
+                Home
+            </Link>
+            <Link href={'/recipe'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
+                Browse Recipe
+            </Link>
+            {user && (
+                <Link href={'/dashboard'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
+                    Dashboard
+                </Link>
             )}
-            {/* {user ? 
-                <div>
-                    <div>
-                        <Link href={'/dashboard'}>Dashboard</Link>
+        </>
+    );
+
+    return (
+        <nav className={`p-2 md:p-3 text-sm md:text-md font-bold ${theme === 'dark' ? 'bg-blue-300' : 'bg-lime-300'} shadow-md relative z-50`}>
+            <div className='max-w-7xl mx-auto px-2 sm:px-4 lg:px-6'>
+                {/* Desktop Navigation */}
+                <div className='hidden md:flex justify-between items-center'>
+                    {/* Logo */}
+                    <Link href={'/'} className='text-lg md:text-xl font-bold hover:opacity-70 transition-opacity'>
+                        RecipeHub
+                    </Link>
+
+                    {/* Center Links */}
+                    <div className='flex gap-4 lg:gap-6 items-center'>
+                        <NavLinks />
                     </div>
-                    <div className='gap-2 flex'>
+
+                    {/* Right Section */}
+                    <div className='flex gap-3 lg:gap-4 items-center'>
                         <ThemeSwitch />
-                        <Link href={'/profile'}>{user?.name}</Link>
-                        <Link onClick={handleLogout}  href={'/signin'}>Logout</Link>
+                        {!user ? (
+                            <Link href={'/signin'} className='hover:opacity-70 transition-opacity'>
+                                Sign In
+                            </Link>
+                        ) : (
+                            <>
+                                <div className='flex items-center gap-2'>
+                                    <Image 
+                                        //src={'/avatar.png'}
+                                        src={user?.image || '/avatar.png'}
+                                        alt={user?.name || 'User Avatar'}
+                                        width={32}
+                                        height={32}
+                                        className='rounded-full border-2 border-white'
+                                    />
+                                    <Link href={'/profile'} className='hover:opacity-70 transition-opacity hidden lg:inline'>
+                                        {user?.name}
+                                    </Link>
+                                </div>
+                                <button 
+                                    onClick={handleLogout} 
+                                    className='hover:opacity-70 transition-opacity'
+                                >
+                                    Logout
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
-                
-            :
-                <div>
-                    <div>
-                        <Link href={'/dashboard'}>Dashboard</Link>
-                    </div>
-                    <div className='gap-2 flex'>
+
+                {/* Mobile Navigation */}
+                <div className='md:hidden flex justify-between items-center'>
+                    {/* Logo */}
+                    <Link href={'/'} className='text-lg font-bold hover:opacity-70 transition-opacity'>
+                        RecipeHub
+                    </Link>
+
+                    {/* Right Section */}
+                    <div className='flex items-center gap-3'>
                         <ThemeSwitch />
-                        <Link href={'/signin'}>SignIn</Link>
-                        <Link className='bg-black text-white px-2 rounded-md' href={'/'}>Get Started</Link>
+                        {!user ? (
+                            <Link href={'/signin'} className='hover:opacity-70 transition-opacity'>
+                                Sign In
+                            </Link>
+                        ) : (
+                            <div className='flex items-center gap-2'>
+                                <Image 
+                                    //src={'/avatar.png'}
+                                    src={user?.image || '/avatar.png'}
+                                    alt={user?.name || 'User Avatar'}
+                                    width={28}
+                                    height={28}
+                                    className='rounded-full border-2 border-white'
+                                />
+                                <button 
+                                    onClick={handleLogout} 
+                                    className='hover:opacity-70 transition-opacity text-sm'
+                                >
+                                    Logout
+                                </button>
+                            </div>
+                        )}
+                        
+                        {/* Hamburger Menu Button with Gravity UI Icons */}
+                        <button 
+                            onClick={toggleMenu}
+                            className='p-1 rounded-md hover:bg-black/10 transition-colors'
+                            aria-label='Toggle menu'
+                        >
+                            {isMenuOpen ? <IoClose size={24} /> : <GiHamburgerMenu size={24} />}
+                        </button>
                     </div>
                 </div>
-                
-            } */}
-            
-        </div>
+
+                {/* Mobile Dropdown Menu */}
+                {isMenuOpen && (
+                    <div className='md:hidden absolute top-full left-0 right-0 bg-inherit shadow-lg p-4 z-50'>
+                        <div className='flex flex-col space-y-3'>
+                            <NavLinks mobile />
+                            
+                            {user && (
+                                <Link href={'/profile'} onClick={closeMenu} className='block py-2 hover:opacity-70 transition-opacity'>
+                                    Profile
+                                </Link>
+                            )}
+                            
+                            {!user && (
+                                <Link href={'/signin'} onClick={closeMenu} className='block py-2 hover:opacity-70 transition-opacity'>
+                                    Sign In
+                                </Link>
+                            )}
+                        </div>
+                    </div>
+                )}
+            </div>
+        </nav>
     );
 };
 

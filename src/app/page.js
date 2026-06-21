@@ -1,3 +1,4 @@
+import Banner from "@/components/ui/banner";
 import { getAllUsers } from "@/lib/actions/allGet";
 import { Button } from "@heroui/react";
 import Image from "next/image";
@@ -9,7 +10,8 @@ export default async function Home() {
     const remoteUrl = "https://i.ibb.co.com/gMkB12xv/google.png";
   return (
     <div>
-        <h2>RecipeHub - Recipe Sharing Platform!</h2>
+        <Banner />
+        {/* <h2>RecipeHub - Recipe Sharing Platform!</h2>
         <Button>
             My Button
         </Button>
@@ -24,6 +26,15 @@ export default async function Home() {
                     <h2>PhotoUrl: {user.photoUrl}</h2>
                 </div>
             )}
+        </div> */}
+        <div>
+            <h2>Explore Recipe</h2>
+        </div>
+        <div>
+            <h2 className="text-xl md:text-4xl font-bold">Featured Recipes</h2>
+        </div>
+        <div>
+            <h2>Popular Recipes</h2>
         </div>
         
     </div>

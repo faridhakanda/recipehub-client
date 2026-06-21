@@ -109,9 +109,9 @@ export default function AddRecipe({ user }) {
 
         // Simple validation checks
         const newErrors = {};
-        if (!recipeName) newErrors.recipeName = "Company name is required";
-        if (!websiteUrl) newErrors.websiteUrl = "Website link is required";
-        if (!location) newErrors.location = "Location coordinates required";
+        if (!recipeName) newErrors.recipeName = "Recipe name is required";
+        //if (!websiteUrl) newErrors.websiteUrl = "Website link is required";
+        //if (!location) newErrors.location = "Location coordinates required";
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
@@ -166,100 +166,100 @@ export default function AddRecipe({ user }) {
     };
 
     // --- SUB-VIEW 1: Empty Profile view state ---
-    if (!company?._id && !isEditing) {
-        return (
-            <div className="max-w-2xl mx-auto my-12 bg-zinc-950 border border-zinc-900 rounded-xl p-8 text-center space-y-6">
-                <div className="w-16 h-16 bg-zinc-900/50 rounded-full flex items-center justify-center mx-auto border border-zinc-800">
-                    <Factory size={24} className="text-zinc-500" />
-                </div>
-                <div className="space-y-2">
-                    <h2 className="text-xl font-semibold text-zinc-200">No Company Registered Yet</h2>
-                    <p className="text-sm text-zinc-500 max-w-sm mx-auto">
-                        To start creating structural job posts and tracking incoming pipelines, configure your workspace profile.
-                    </p>
-                </div>
-                <Button 
-                    onPress={startRegistration}
-                    className="bg-white text-black font-semibold hover:bg-zinc-200 rounded-lg px-6 h-11 transition-all"
-                >
-                    Register Company <ArrowRight size={16} className="ml-1" />
-                </Button>
-            </div>
-        );
-    }
-
+    // if (!company?._id && !isEditing) {
+    //     return (
+    //         <div className="max-w-2xl mx-auto my-12 bg-zinc-950 border border-zinc-900 rounded-xl p-8 text-center space-y-6">
+    //             <div className="w-16 h-16 bg-zinc-900/50 rounded-full flex items-center justify-center mx-auto border border-zinc-800">
+    //                 <Factory size={24} className="text-zinc-500" />
+    //             </div>
+    //             <div className="space-y-2">
+    //                 <h2 className="text-xl font-semibold text-zinc-200">No Company Registered Yet</h2>
+    //                 <p className="text-sm text-zinc-500 max-w-sm mx-auto">
+    //                     To start creating structural job posts and tracking incoming pipelines, configure your workspace profile.
+    //                 </p>
+    //             </div>
+    //             <Button 
+    //                 onPress={startRegistration}
+    //                 className="bg-white text-black font-semibold hover:bg-zinc-200 rounded-lg px-6 h-11 transition-all"
+    //             >
+    //                 Register Company <ArrowRight size={16} className="ml-1" />
+    //             </Button>
+    //         </div>
+    //     );
+    // }
+    
     // --- SUB-VIEW 2: Render Presentation Dashboard view mode ---
-    if (company && !isEditing) {
-        const getStatusStyles = (status) => {
-            switch(status) {
-                case 'Approved': return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
-                case 'Rejected': return 'bg-rose-500/10 text-rose-400 border-rose-500/20';
-                default: return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
-            }
-        };
+    // if (company && !isEditing) {
+    //     const getStatusStyles = (status) => {
+    //         switch(status) {
+    //             case 'Approved': return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+    //             case 'Rejected': return 'bg-rose-500/10 text-rose-400 border-rose-500/20';
+    //             default: return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+    //         }
+    //     };
+    
+    //     return (
+    //         <div className="max-w-4xl mx-auto my-8 bg-zinc-950 border border-zinc-900 rounded-xl p-8 space-y-8">
+    //             {/* Header Action Grid area */}
+    //             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-zinc-900 pb-6">
+    //                 <div className="flex items-center gap-4">
+    //                     {company.logo ? (
+    //                         <img src={company.logo} alt={company.name} className="w-16 h-16 rounded-xl object-contain bg-zinc-900 p-2 border border-zinc-800" />
+    //                     ) : (
+    //                         <div className="w-16 h-16 rounded-xl bg-zinc-900 flex items-center justify-center border border-zinc-800">
+    //                             <Factory size={24} className="text-zinc-600" />
+    //                         </div>
+    //                     )}
+    //                     <div>
+    //                         <div className="flex items-center gap-3">
+    //                             <h1 className="text-2xl font-bold text-white">{company.name}</h1>
+    //                             <span className={`text-xs px-2.5 py-1 rounded-full font-medium border ${getStatusStyles(company.status)}`}>
+    //                                 {company.status}
+    //                             </span>
+    //                         </div>
+    //                         <a href={company.websiteUrl} target="_blank" rel="noreferrer" className="text-sm text-zinc-400 hover:underline flex items-center gap-1 mt-1">
+    //                             <Globe size={14} className="text-zinc-500" /> {company.websiteUrl}
+    //                         </a>
+    //                     </div>
+    //                 </div>
+    //                 <Button 
+    //                     onPress={startEditing}
+    //                     variant="bordered"
+    //                     className="border-zinc-800 text-zinc-300 hover:bg-zinc-900 rounded-lg px-4 font-medium h-10 flex items-center gap-2"
+    //                 >
+    //                     <Pencil size={14} /> Edit Profile
+    //                 </Button>
+    //             </div>
 
-        return (
-            <div className="max-w-4xl mx-auto my-8 bg-zinc-950 border border-zinc-900 rounded-xl p-8 space-y-8">
-                {/* Header Action Grid area */}
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-zinc-900 pb-6">
-                    <div className="flex items-center gap-4">
-                        {company.logo ? (
-                            <img src={company.logo} alt={company.name} className="w-16 h-16 rounded-xl object-contain bg-zinc-900 p-2 border border-zinc-800" />
-                        ) : (
-                            <div className="w-16 h-16 rounded-xl bg-zinc-900 flex items-center justify-center border border-zinc-800">
-                                <Factory size={24} className="text-zinc-600" />
-                            </div>
-                        )}
-                        <div>
-                            <div className="flex items-center gap-3">
-                                <h1 className="text-2xl font-bold text-white">{company.name}</h1>
-                                <span className={`text-xs px-2.5 py-1 rounded-full font-medium border ${getStatusStyles(company.status)}`}>
-                                    {company.status}
-                                </span>
-                            </div>
-                            <a href={company.websiteUrl} target="_blank" rel="noreferrer" className="text-sm text-zinc-400 hover:underline flex items-center gap-1 mt-1">
-                                <Globe size={14} className="text-zinc-500" /> {company.websiteUrl}
-                            </a>
-                        </div>
-                    </div>
-                    <Button 
-                        onPress={startEditing}
-                        variant="bordered"
-                        className="border-zinc-800 text-zinc-300 hover:bg-zinc-900 rounded-lg px-4 font-medium h-10 flex items-center gap-2"
-                    >
-                        <Pencil size={14} /> Edit Profile
-                    </Button>
-                </div>
-
-                {/* Profile Meta Metrics Grid Section */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-zinc-900/30 border border-zinc-900 p-4 rounded-lg">
-                        <span className="text-xs text-zinc-500 uppercase font-semibold block">Industry Category</span>
-                        <span className="text-zinc-300 font-medium mt-1 block">{company.industry}</span>
-                    </div>
-                    <div className="bg-zinc-900/30 border border-zinc-900 p-4 rounded-lg">
-                        <span className="text-xs text-zinc-500 uppercase font-semibold block">Location</span>
-                        <span className="text-zinc-300 font-medium mt-1 block">{company.location}</span>
-                    </div>
-                    <div className="bg-zinc-900/30 border border-zinc-900 p-4 rounded-lg">
-                        <span className="text-xs text-zinc-500 uppercase font-semibold block">Company Scale</span>
-                        <span className="text-zinc-300 font-medium mt-1 block">{company.employeeCount}</span>
-                    </div>
-                </div>
+    //             {/* Profile Meta Metrics Grid Section */}
+    //             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    //                 <div className="bg-zinc-900/30 border border-zinc-900 p-4 rounded-lg">
+    //                     <span className="text-xs text-zinc-500 uppercase font-semibold block">Industry Category</span>
+    //                     <span className="text-zinc-300 font-medium mt-1 block">{company.industry}</span>
+    //                 </div>
+    //                 <div className="bg-zinc-900/30 border border-zinc-900 p-4 rounded-lg">
+    //                     <span className="text-xs text-zinc-500 uppercase font-semibold block">Location</span>
+    //                     <span className="text-zinc-300 font-medium mt-1 block">{company.location}</span>
+    //                 </div>
+    //                 <div className="bg-zinc-900/30 border border-zinc-900 p-4 rounded-lg">
+    //                     <span className="text-xs text-zinc-500 uppercase font-semibold block">Company Scale</span>
+    //                     <span className="text-zinc-300 font-medium mt-1 block">{company.employeeCount}</span>
+    //                 </div>
+    //             </div>
                 
-                {/* Description Box View Section */}
-                {company.description && (
-                    <div className="space-y-2">
-                        <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">About our Vision & Culture</h3>
-                        <p className="text-zinc-300 text-sm leading-relaxed whitespace-pre-wrap bg-zinc-900/20 border border-zinc-900/60 p-4 rounded-xl">
-                            {company.description}
-                        </p>
-                    </div>
-                )}
-            </div>
-        );
-    }
-
+    //             {/* Description Box View Section */}
+    //             {company.description && (
+    //                 <div className="space-y-2">
+    //                     <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">About our Vision & Culture</h3>
+    //                     <p className="text-zinc-300 text-sm leading-relaxed whitespace-pre-wrap bg-zinc-900/20 border border-zinc-900/60 p-4 rounded-xl">
+    //                         {company.description}
+    //                     </p>
+    //                 </div>
+    //             )}
+    //         </div>
+    //     );
+    // }
+    
     // --- SUB-VIEW 3: Form Editing & Registration View Structure ---
     return (
         <div className="max-w-3xl mx-auto my-8 bg-zinc-950 p-8 border border-zinc-900 rounded-xl">
@@ -337,7 +337,7 @@ export default function AddRecipe({ user }) {
 
                         {/* Custom Styled Upload Block matching attachment blueprint exactly */}
                         <div className="flex flex-col gap-1 w-full">
-                            <span className="text-zinc-400 font-medium text-sm">Company Logo</span>
+                            <span className="text-zinc-400 font-medium text-sm">Recipe Image</span>
                             <div className="flex items-center gap-4 mt-1">
                                 <label className="w-14 h-14 border border-dashed border-zinc-700 hover:border-zinc-500 bg-zinc-900/40 rounded-xl flex flex-col items-center justify-center cursor-pointer transition-colors group relative overflow-hidden">
                                     <input 

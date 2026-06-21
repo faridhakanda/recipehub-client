@@ -16,5 +16,5 @@ export const getRecipeById = async(id) => {
 
 // fetch all plans
 export const getPlans = async(planId)=> {
-    return serverFetch(`/api/plans?planId=${planId}`);
+    return serverFetch(`/api/plans?id=${planId}`);
 }

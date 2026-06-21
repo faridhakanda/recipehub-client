@@ -7,6 +7,6 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 export const PLAN_PRICE_ID = {
     //'user_premium': 'prod_UjYuTjfaPWJ2ZD'
-    'user_premium': 'price_1Tk5mHPLuBM45V2ilGL2YCDT'
+    'premium': 'price_1Tk5mHPLuBM45V2ilGL2YCDT'
     
 }

@@ -8,10 +8,11 @@ export default async function Success({ searchParams }) {
 
   if (!session_id)
     throw new Error('Please provide a valid session_id (`cs_test_...`)')
-
+  
   const {
     status,
-    customer_details: { email: customerEmail }
+    customer_details: { email: customerEmail },
+    metadata
   } = await stripe.checkout.sessions.retrieve(session_id, {
     expand: ['line_items', 'payment_intent']
   })
@@ -19,8 +20,14 @@ export default async function Success({ searchParams }) {
   if (status === 'open') {
     return redirect('/')
   }
-
+  
   if (status === 'complete') {
+    const subsInfo = {
+        email: customerEmail,
+        planId: metadata.plandId
+    }
+    //const result = await createSubscription(subsInfo);
+    // console.log(result, 'result');
     return (
       <section id="success">
         <p>

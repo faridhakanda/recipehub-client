@@ -1,5 +1,6 @@
 import Banner from "@/components/ui/banner";
 import RecipeCard from "@/components/ui/card";
+import HomeBanner from "@/components/ui/homeBanner";
 import { getAllUsers } from "@/lib/actions/allGet";
 import { Button } from "@heroui/react";
 import Image from "next/image";
@@ -12,6 +13,7 @@ export default async function Home() {
     const remoteUrl = "https://i.ibb.co.com/gMkB12xv/google.png";
   return (
     <div>
+        <HomeBanner />
         <Banner />
         {/* <h2>RecipeHub - Recipe Sharing Platform!</h2>
         <Button>

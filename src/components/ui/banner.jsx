@@ -35,35 +35,3 @@ const Banner = () => {
 };
 
 export default Banner;
-
-
-// import Image from 'next/image';
-// import React from 'react';
-
-// const Banner = () => {
-//     return (
-//         <div className='grid w-full justify-center mx-auto   my-4'>
-//             <div className='flex-row-reverse md:flex mx-auto py-4 justify-center'>
-//                 <div className='w-lg items-center justify-center my-auto'>
-//                     <h2 className='text-lg text-center md:text-4xl font-bold'><span className='bg-gradient-to-l from-[#9514FA] to-[#4F39F6]  bg-clip-text text-transparent '>RecipeHub</span> is one of the biggest cataring service of Mymensingh, Bangladesh</h2>
-//                 </div>
-//                 <div>
-//                     <Image className='w-100% h-100% rounded-md' src={'/recipe/chickencurry.jpg'} alt="banner" width={500} height={500} />
-                    
-//                 </div>
-//             </div>
-//             {/* <div className='grid grid-cols-1 md:grid-cols-2 mx-auto py-4 justify-center'>
-                
-//                 <div>
-//                     <Image className='rounded-md' src={'/recipe/beafbirani.jpg'} alt="banner" width={500} height={500} />
-//                 </div>
-//                 <div className='w-lg items-center justify-center my-auto'>
-                    
-//                     <h2 className=' text-lg text-center md:text-4xl font-bold'>One of the famous Birani House in Mymensingh City is <sapn className='bg-gradient-to-l from-[#9514FA] to-[#4F39F6]  bg-clip-text text-transparent '>RecipeHub</sapn></h2>
-//                 </div>
-//             </div> */}
-//         </div>
-//     );
-// };
-
-// export default Banner;

@@ -1,7 +1,9 @@
 import Banner from "@/components/ui/banner";
+import RecipeCard from "@/components/ui/card";
 import { getAllUsers } from "@/lib/actions/allGet";
 import { Button } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function Home() {
     const users = await getAllUsers();
@@ -27,14 +29,29 @@ export default async function Home() {
                 </div>
             )}
         </div> */}
-        <div>
-            <h2>Explore Recipe</h2>
+        <div className="flex justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+            <div >
+                {/* <h2 className="font-bold text-4xl">Explore all of our recipe</h2> */}
+            </div>
+            <Link href={'/recipe'}>
+                <Button className={'rounded-md font-bold'}>Explore Recipe</Button>
+            </Link>
+            
         </div>
-        <div>
+        {/* Features recipe  */}
+        <div className="justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
             <h2 className="text-xl md:text-4xl font-bold">Featured Recipes</h2>
+            <div>
+                <h2>All features recipe</h2>
+            </div>
         </div>
-        <div>
-            <h2>Popular Recipes</h2>
+        {/* Popular recipe */}
+        <div className=" justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+            <h2 className="text-xl md:text-4xl font-bold">Popular Recipes</h2>
+            <div>
+                <h2 >All Popular recipe</h2>
+                
+            </div>
         </div>
         
     </div>

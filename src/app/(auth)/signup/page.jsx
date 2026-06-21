@@ -5,12 +5,14 @@ import { authClient } from "@/lib/auth-client";
 import {ArrowUpToLine, Check} from "@gravity-ui/icons";
 import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 const SignUpPage = () => {
-const router = useRouter();
-
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const redirectTo = searchParams.get("redirect") || "/";
+  
   
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -22,9 +24,11 @@ const router = useRouter();
         password: user?.password,
         image: user?.imageUrl,
         role: "user",
+        plan: "free",
     })
     if (data) {
-        router.push('/signin');
+        //router.push('/signin');
+        router.push(redirectTo);
     } 
     if (error) {
         alert('User is not signup. Try again!');
@@ -109,7 +113,7 @@ const router = useRouter();
       </div>
       <div className="flex gap-2 mx-auto items-center">
         <p>Already have an account?</p>
-        <Link className="text-blue-500 font-bold" href={'/signin'}>SignIn</Link>
+        <Link className="text-blue-500 font-bold" href={`/signin?redirect=${redirectTo}`}>SignIn</Link>
       </div>
     </Form>
   );

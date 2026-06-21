@@ -7,8 +7,11 @@ import { authClient } from '@/lib/auth-client';
 import Image from 'next/image';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoClose } from 'react-icons/io5';
+import { useRouter } from 'next/navigation';
 
+import {Button, Dropdown, Label} from "@heroui/react";
 const Navbar = () => {
+    const router = useRouter();
     const { theme, setTheme } = useTheme();
     const session = authClient.useSession();
     const user = session?.data?.user;
@@ -16,6 +19,7 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         await authClient.signOut();
+        router.push('/signin');
         setIsMenuOpen(false);
     };
 
@@ -34,7 +38,10 @@ const Navbar = () => {
                 Home
             </Link>
             <Link href={'/recipe'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
-                Browse Recipe
+                Browse Recipes
+            </Link>
+            <Link href={'/recipe-details'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
+                Recipe Details
             </Link>
             <Link href={'/plans'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
                 Plans
@@ -83,6 +90,34 @@ const Navbar = () => {
                                     <Link href={'/profile'} className='hover:opacity-70 transition-opacity hidden lg:inline'>
                                         {user?.name}
                                     </Link>
+                                    <Dropdown>
+                                        <Button aria-label="Menu" variant="secondary">
+                                            {user?.name}
+                                        </Button>
+                                        <Dropdown.Popover>
+                                            <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
+                                            <Dropdown.Item id="new-file" textValue="New file">
+                                                
+                                                    <Link href={'/new-file'}>
+                                                        <Label>Profile</Label>
+                                                    </Link>
+                                               
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="copy-link" textValue="Copy link">
+                                                <Link href={'/copylin'}>
+                                                    <Label>Copy link</Label>
+                                                </Link>
+                                                
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="edit-file" textValue="Edit file">
+                                                <Label>Edit file</Label>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="delete-file" textValue="Delete file" variant="danger">
+                                                <Label>Delete file</Label>
+                                            </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown.Popover>
+                                    </Dropdown>
                                 </div>
                                 <button 
                                     onClick={handleLogout} 

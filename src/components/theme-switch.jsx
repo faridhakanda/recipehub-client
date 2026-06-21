@@ -1,10 +1,22 @@
 'use client';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ThemeSwitch = () => {
     const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+    if (!mounted) {
+        return (
+            <button className='items-center p-2 rounded-full'>
+                <div className='w-6 h-6' />
+            </button>
+        )
+    }
     return (
         <button className={`theme === 'dark' ? "" : "" items-center`} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
             {/* Toggle { theme === "dark" ? "Light" : "Dark"} */}

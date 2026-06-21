@@ -17,7 +17,7 @@ const Page = async() => {
             <h2>User current recipe add amount: {userPlan?.maxRecipePerUser}</h2>
             <h2>Username: {user?.name}</h2>
             <h2>Userplan: {user?.plan}</h2>
-            <h2>isUnlimited: {userPlan?.isUnlimited ? "Unlimited" : "2"}</h2>
+            <h2>isUnlimited: {userPlan?.isUnlimited === 'true' ? "Unlimited" : "2"}</h2>
             {/* <AddRecipe user={user} /> */}
             {/* <PostRecipeForm user={user}/> */}
             <AddRecipe user={user}/>

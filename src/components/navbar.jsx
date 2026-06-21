@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ThemeSwitch from './theme-switch';
 import { useTheme } from 'next-themes';
 import { authClient } from '@/lib/auth-client';
@@ -16,6 +16,10 @@ const Navbar = () => {
     const session = authClient.useSession();
     const user = session?.data?.user;
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    
+    //const [mounted, setMounted] = useState(false);
+
+    
 
     const handleLogout = async () => {
         await authClient.signOut();

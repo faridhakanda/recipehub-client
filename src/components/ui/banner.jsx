@@ -20,7 +20,7 @@ const Banner = () => {
                     <div className='relative w-full max-w-md md:max-w-full aspect-square md:aspect-auto'>
                         <Image 
                             className='rounded-md object-cover w-full h-auto' 
-                            src={'/recipe/chickencurry.jpg'} 
+                            src={'/chickencurry.jpg'} 
                             alt="banner" 
                             width={500} 
                             height={500}

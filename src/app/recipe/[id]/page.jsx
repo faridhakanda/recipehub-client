@@ -80,7 +80,7 @@ const RecipeDetailsPage = async ({ params }) => {
         if (!recipeDetails) {
             notFound();
         }
-
+        
         // Format date
         const formattedDate = new Date(recipeDetails.createdAt).toLocaleDateString('en-US', {
             year: 'numeric',
@@ -89,7 +89,8 @@ const RecipeDetailsPage = async ({ params }) => {
         });
 
         return (
-            <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+            <>
+                <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto">
                     {/* Back Button */}
                     <Link 
@@ -105,7 +106,7 @@ const RecipeDetailsPage = async ({ params }) => {
                     {/* Main Card */}
                     <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                         {/* Header Section */}
-                        <div className="bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-8 sm:px-8 sm:py-10">
+                        <div className="bg-linear-to-r from-blue-600 to-blue-800 px-6 py-8 sm:px-8 sm:py-10">
                             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                                 <div>
                                     <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -163,7 +164,7 @@ const RecipeDetailsPage = async ({ params }) => {
                                 />
                             </div>
                         ) : (
-                            <div className="w-full h-64 sm:h-80 md:h-96 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                            <div className="w-full h-64 sm:h-80 md:h-96 bg-linear-to-br from-gray-200 to-gray-300 flex items-center justify-center">
                                 <div className="text-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-20 w-20 text-gray-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -227,7 +228,7 @@ const RecipeDetailsPage = async ({ params }) => {
                                         {recipeDetails.instructions && recipeDetails.instructions.length > 0 ? (
                                             recipeDetails.instructions.map((instruction, index) => (
                                                 <li key={index} className="flex items-start gap-3 text-gray-700">
-                                                    <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold">
+                                                    <span className="shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold">
                                                         {index + 1}
                                                     </span>
                                                     <span>{instruction}</span>
@@ -260,7 +261,8 @@ const RecipeDetailsPage = async ({ params }) => {
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
+            </>
         );
     } catch (error) {
         console.error('Error rendering recipe details:', error);

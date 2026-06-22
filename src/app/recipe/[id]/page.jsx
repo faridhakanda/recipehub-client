@@ -5,6 +5,7 @@ import React from 'react';
 
 export const generateMetadata = async({ params }) => {
     const { id } = await params;
+    //const id = _id.toString();
     //const recipe = await  getRecipeById(id);
     return {
         title: `Farid Akanda ${id}`,
@@ -14,6 +15,8 @@ export const generateMetadata = async({ params }) => {
 
 const RecipeDetailsPage = async ({ params }) => {
     const { id } = await params;
+    //const id = _id.toString();
+    const recipeDetails = await getRecipeById(id);
     return (
         <div>
             <h2>Id: {id}</h2>

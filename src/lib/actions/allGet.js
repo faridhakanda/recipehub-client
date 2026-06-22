@@ -8,6 +8,10 @@ export const getAllUsers = async() => {
 }
 
 
+// fetch all recipe
+export const getAllRecipe = async() => {
+    return serverFetch('/api/recipe');
+}
 // fetch recipe by id
 export const getRecipeById = async(id) => {
     return serverFetch(`/api/recipe/:${id}`);

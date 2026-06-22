@@ -14,15 +14,36 @@ export async function POST(request) {
     const formData = await request.formData();
     const planId = formData.get('plan');
 
-
+    if (!planId) {
+        return NextResponse.json(
+            { error: 'Plan ID is required'},
+            { status: 400 }
+        );
+    }
     // price from stripe.js
     // const priceId = PLAN_PRICE_ID['premium'];
     const priceId = PLAN_PRICE_ID[planId];
-
+    if (!priceId) {
+        return NextResponse.json(
+            { error: 'Invalid plan selected' },
+            { status: 400 }
+        );
+    }
+    
     const user = await getUserSession();
+    if(!user?.email) {
+        return NextResponse.json(
+            { error: 'User not authenticated' },
+            { status: 401 }
+        );
+    }
+
+    const userId = user?._id || user._id || user.id || user.userId;
     // Create Checkout Sessions from body params.
     const session = await stripe.checkout.sessions.create({
         customer_email: user?.email,
+        //customer_creation: 'always',
+        
         //customer_id: user?._id,
       line_items: [
         {
@@ -35,8 +56,16 @@ export async function POST(request) {
         },
       ],
       mode: 'subscription',
-      metadata: {planId},
+      //metadata: {planId},
+      metadata: {
+        plan: planId,
+        //userId: user?._id || user.id,
+        userId: userId || 'unknown',
+        userEmail: user?.email,
+      },
       success_url: `${origin}/plans/success?session_id={CHECKOUT_SESSION_ID}`,
+      // added 
+      cancel_url: `${origin}/plans`,
     });
     return NextResponse.redirect(session.url, 303)
   } catch (err) {

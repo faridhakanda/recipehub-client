@@ -3,6 +3,7 @@ import PostRecipeForm from './postRecipe';
 import { getUserSession } from '@/lib/core/session';
 import AddRecipe from './addRecipe';
 import { getPlans } from '@/lib/actions/allGet';
+import RecipePost from './RecipeAdd';
 
 
 const Page = async() => {
@@ -20,7 +21,8 @@ const Page = async() => {
             <h2>isUnlimited: {userPlan?.isUnlimited === 'true' ? "Unlimited" : "2"}</h2>
             {/* <AddRecipe user={user} /> */}
             {/* <PostRecipeForm user={user}/> */}
-            <AddRecipe user={user}/>
+            {/* <AddRecipe user={user}/> */}
+            <RecipePost user={user}/>
         </div>
     );
 };

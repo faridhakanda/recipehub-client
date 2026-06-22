@@ -1,36 +1,39 @@
 import RecipeCard from '@/components/ui/card';
+import { getAllRecipe } from '@/lib/actions/allGet';
 import React from 'react';
-const recipes = [
-    {
-        id: 1,
-        title: 'Chicken Masala'
-    },
-    {
-        id: 2,
-        title: 'Beef Stick Roll'
-    },
-    {
-        id: 3,
-        title: 'Mutton Curry'
-    },
-    {
-        id: 4,
-        title: 'Tandury Nanbread Roll'
-    },
-    {
-        id: 5,
-        title: 'Fish Fry'
-    },
-    {
-        id: 6,
-        title: 'French Fry with Tomoto Sauce'
-    },
-    {
-        id: 7,
-        title: 'Vegetable Fry without Oil'
-    }
-]
-const RecipePage = () => {
+// const recipes = [
+//     {
+//         id: 1,
+//         title: 'Chicken Masala'
+//     },
+//     {
+//         id: 2,
+//         title: 'Beef Stick Roll'
+//     },
+//     {
+//         id: 3,
+//         title: 'Mutton Curry'
+//     },
+//     {
+//         id: 4,
+//         title: 'Tandury Nanbread Roll'
+//     },
+//     {
+//         id: 5,
+//         title: 'Fish Fry'
+//     },
+//     {
+//         id: 6,
+//         title: 'French Fry with Tomoto Sauce'
+//     },
+//     {
+//         id: 7,
+//         title: 'Vegetable Fry without Oil'
+//     }
+// ]
+const RecipePage = async() => {
+    const recipes = await getAllRecipe();
+    console.log('all recipe: ', recipes);
     return (
         <div>
             <h2>Recipe Page!</h2>
@@ -47,7 +50,7 @@ const RecipePage = () => {
                     <RecipeCard />
                     <RecipeCard /> */}
                     {recipes.map(recipe => 
-                        <div key={recipe.id}>
+                        <div key={recipe._id.toString()}>
                             <RecipeCard recipe={recipe} />
                         </div>
                     )}

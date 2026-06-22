@@ -1,5 +1,4 @@
 import Banner from "@/components/ui/banner";
-import RecipeCard from "@/components/ui/card";
 import HomeBanner from "@/components/ui/homeBanner";
 import { getAllUsers } from "@/lib/actions/allGet";
 import { Button } from "@heroui/react";

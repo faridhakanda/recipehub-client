@@ -14,7 +14,7 @@ export const getAllRecipe = async() => {
 }
 // fetch recipe by id
 export const getRecipeById = async(id) => {
-    return serverFetch(`/api/recipe/:${id}`);
+    return serverFetch(`/api/recipe/${id}`);
 }
 
 

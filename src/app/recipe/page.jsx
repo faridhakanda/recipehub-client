@@ -42,7 +42,9 @@ const RecipePage = async() => {
     const recipes = await getAllRecipe();
     console.log('all recipe: ', recipes);
     
-    
+    const totalRecipe = recipes.length;
+    const totalPage = totalRecipe / 2;
+    const itemsPerPage = totalRecipe / totalPage;
     return (
         <div className={styles.pageContainer}>
             {/* Header */}
@@ -87,7 +89,7 @@ const RecipePage = async() => {
                         <div className={styles.footer}>
                             Showing {recipes.length} {recipes.length === 1 ? 'recipe' : 'recipes'}
                         </div>
-                        <PaginationForRecipe />
+                        <PaginationForRecipe totalItems={totalRecipe} totalPages={totalPage} itemsPerPage={itemsPerPage}/>
                     </>
                 ) : (
                     <div className={styles.emptyState}>
@@ -98,7 +100,7 @@ const RecipePage = async() => {
                         </div>
                         <h3 className={styles.emptyTitle}>No Recipes Found</h3>
                         <p className={styles.emptyDescription}>
-                            We couldn't find any recipes at the moment. Check back later for delicious new additions!
+                            We could not find any recipes at the moment. Check back later for delicious new additions!
                         </p>
                     </div>
                 )}

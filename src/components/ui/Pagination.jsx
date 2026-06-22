@@ -78,7 +78,7 @@ import { useState } from "react";
 
 const PaginationForRecipe = ({ 
     currentPage = 1, 
-    totalPages = 5, 
+    totalPages = 1, 
     onPageChange,
     itemsPerPage = 6,
     totalItems = 0

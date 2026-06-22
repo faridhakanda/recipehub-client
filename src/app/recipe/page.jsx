@@ -36,6 +36,7 @@ import { getAllRecipe } from '@/lib/actions/allGet';
 import React from 'react';
 import styles from './page.module.css';
 import { getUserSession } from '@/lib/core/session';
+import PaginationForRecipe from '@/components/ui/Pagination';
 
 const RecipePage = async() => {
     const recipes = await getAllRecipe();
@@ -86,6 +87,7 @@ const RecipePage = async() => {
                         <div className={styles.footer}>
                             Showing {recipes.length} {recipes.length === 1 ? 'recipe' : 'recipes'}
                         </div>
+                        <PaginationForRecipe />
                     </>
                 ) : (
                     <div className={styles.emptyState}>

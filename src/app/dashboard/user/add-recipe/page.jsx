@@ -2,7 +2,7 @@ import React from 'react';
 //import PostRecipeForm from './postRecipe';
 import { getUserSession } from '@/lib/core/session';
 //import AddRecipe from './addRecipe';
-import { getPlans, getPlansForRecipe } from '@/lib/actions/allGet';
+import { getPlans, getPlansForRecipe, getUserAllRecipeByUserId } from '@/lib/actions/allGet';
 import RecipePost from './RecipeAdd';
 
 
@@ -11,9 +11,11 @@ const Page = async() => {
     console.log('user in add recipe page: ', user);
     const userPlan = await getPlansForRecipe(user?.plan);
     console.log('user current plan is: ', userPlan);
+    const userAllRecipePost = await getUserAllRecipeByUserId(user?.id);
     return (
         <div>
             <h2>Add Recipe</h2>
+            <h2>Total Recipe added this User: {userAllRecipePost.length}</h2>
             <h2>User current plan is: {userPlan?.name}</h2>
             <h2>User current recipe add amount: {userPlan?.maxRecipePerUser}</h2>
             <h2>Username: {user?.name}</h2>

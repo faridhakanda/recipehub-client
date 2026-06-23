@@ -1,3 +1,4 @@
+import { protectedFetch } from "../core/server";
 import { serverFetch } from "../core/serverFetch";
 
 //const SEVER = process.env.SERVER_URL;
@@ -10,7 +11,7 @@ export const getAllUsers = async() => {
 
 // fetch recipe by user id who created
 export const getUserAllRecipeByUserId = async(id) => {
-    return serverFetch(`/api/user-recipe/${id}`);
+    return serverFetch(`/api/user-recipe?authorId=${id}`);
 }
 
 // fetch all recipe
@@ -26,4 +27,11 @@ export const getRecipeById = async(id) => {
 // fetch all plans
 export const getPlansForRecipe = async(planId)=> {
     return serverFetch(`/api/plans?id=${planId}`);
+}
+
+
+
+// here is all protected fetch
+export const getUserByAdmin = async(path) => {
+    return protectedFetch(path);
 }

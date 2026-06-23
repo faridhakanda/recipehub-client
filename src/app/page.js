@@ -1,6 +1,7 @@
 import Banner from "@/components/ui/banner";
 import HomeBanner from "@/components/ui/homeBanner";
 import { getAllUsers } from "@/lib/actions/allGet";
+import { getUserSession, getUserToken } from "@/lib/core/session";
 import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +9,10 @@ import Link from "next/link";
 export default async function Home() {
     const users = await getAllUsers();
     console.log(users, 'users');
+    const user = await getUserSession();
+    console.log('user session', user);
+    const userToken = await getUserToken();
+    console.log('user token', userToken);
     const url = false;
     const remoteUrl = "https://i.ibb.co.com/gMkB12xv/google.png";
   return (

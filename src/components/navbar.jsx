@@ -44,9 +44,9 @@ const Navbar = () => {
             <Link href={'/recipe'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
                 Browse Recipes
             </Link>
-            <Link href={'/recipe-details'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
+            {/* <Link href={'/recipe-details'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
                 Recipe Details
-            </Link>
+            </Link> */}
             <Link href={'/plans'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
                 Plans
             </Link>

@@ -13,6 +13,9 @@ export const getAllUsers = async() => {
 export const getUserAllRecipeByUserId = async(id) => {
     return serverFetch(`/api/user-recipe?authorId=${id}`);
 }
+export const getUserRecipeByRecipeId = async(id) => {
+    return serverFetch(`/api/user-recipe/${id}`);
+}
 
 // fetch all recipe
 export const getAllRecipe = async() => {

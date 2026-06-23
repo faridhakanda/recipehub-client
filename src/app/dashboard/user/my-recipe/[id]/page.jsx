@@ -1,14 +1,14 @@
-import { getRecipeById } from '@/lib/actions/allGet';
+import { getUserRecipeByRecipeId } from '@/lib/actions/allGet';
 import Link from 'next/link';
 import React from 'react';
-import { notFound, redirect } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import { getUserSession } from '@/lib/core/session';
 
 export const generateMetadata = async({ params }) => {
     try {
         const { id } = await params;
-        const recipe = await getRecipeById(id);
+        //const recipe = await getRecipeById(id);
+        const recipe = await getUserRecipeByRecipeId(id);
         
         if (!recipe) {
             return {
@@ -30,17 +30,12 @@ export const generateMetadata = async({ params }) => {
 }
 
 const RecipeDetailsPage = async ({ params }) => {
-    const { id } = await params;
-    const user = await getUserSession();
-    if (!user) {
-        redirect(`/signin?redirect=/recipe/${id}`);
-    }
     try {
         const { id } = await params;
         console.log('current id recipe is: ', id);
         
-        const recipeDetails = await getRecipeById(id);
-        
+        //const recipeDetails = await getRecipeById(id);
+        const recipeDetails = await getUserRecipeByRecipeId(id);
         if (!recipeDetails) {
             notFound();
         }
@@ -57,7 +52,7 @@ const RecipeDetailsPage = async ({ params }) => {
                     <div className="max-w-4xl mx-auto">
                         {/* Back Button */}
                         <Link 
-                            href={'/recipe'}
+                            href={'/dashboard/user/my-recipe'}
                             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg mb-6"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -240,7 +235,7 @@ const RecipeDetailsPage = async ({ params }) => {
                     </div>
                     <p className="mb-4">Unable to load recipe details. Please try again later.</p>
                     <Link 
-                        href={'/recipe'}
+                        href={'/dashboard/user/my-recipe'}
                         className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
                     >
                         Back to Recipes

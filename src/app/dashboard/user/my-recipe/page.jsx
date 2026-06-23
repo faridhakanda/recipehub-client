@@ -1,60 +1,32 @@
-
-// import RecipeCard from '@/components/ui/RecipeCard';
-// import { getAllRecipe } from '@/lib/actions/allGet';
-// import React from 'react';
-
-// const RecipePage = async() => {
-//     const recipes = await getAllRecipe();
-//     console.log('all recipe: ', recipes);
-//     return (
-//         <div>
-//             <h2>Recipe Page!</h2>
-//             <h2>Here to be add card for recipe!</h2>
-//             <p>All card pass a props id for recipe details for meta data!</p>
-//             <div className='w-6xl mx-auto bg-blue-200'>
-//                 <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-//                     {recipes.map(recipe => 
-//                         <div key={recipe._id.toString()}>
-//                             <RecipeCard recipe={recipe} />
-//                         </div>
-//                     )}
-//                 </div>
-//             </div>
-            
-            
-//         </div>
-//     );
-// };
-
-// export default RecipePage;
-
-
-
-
-import RecipeCard from '@/components/ui/RecipeCard';
-import { getAllRecipe } from '@/lib/actions/allGet';
+//import RecipeCard from '@/components/ui/RecipeCard';
+//import { getAllRecipe } from '@/lib/actions/allGet';
 import React from 'react';
 import styles from './page.module.css';
 import { getUserSession } from '@/lib/core/session';
 import PaginationForRecipe from '@/components/ui/Pagination';
+import RecipeCard from './card';
+import { getUserAllRecipeByUserId } from '@/lib/actions/allGet';
 
 const RecipePage = async() => {
-    const recipes = await getAllRecipe();
+    const user = await getUserSession();
+    const recipes = await getUserAllRecipeByUserId(user?.id);
+    //const recipes = await getAllRecipe();
     console.log('all recipe: ', recipes);
     
-    const totalRecipe = recipes.length;
-    const totalPage = totalRecipe / 2;
-    const itemsPerPage = totalRecipe / totalPage;
+    // const totalRecipe = recipes.length;
+    // const totalPage = totalRecipe / 2;
+    // const itemsPerPage = totalRecipe / totalPage;
     return (
-        <div className={`styles.pageContainer my-2`}>
+        <div className=''>
+            <div className={`styles.pageContainer my-2`}>
             {/* Header */}
-            <div className={styles.header}>
+            <div className={`styles.header`}>
                 <div className={styles.headerContent}>
                     <div className={styles.headerInner}>
                         <div>
                             <h1 className={styles.headerTitle}>
                                 <span>🍳</span>
-                                Recipe Collection
+                                My Added Recipe Collection
                                 
                             </h1>
                             
@@ -82,6 +54,7 @@ const RecipePage = async() => {
                         <div className={styles.recipeGrid}>
                             {recipes.map((recipe) => (
                                 <div key={recipe._id.toString()} className={styles.cardWrapper}>
+                                    {/* <RecipeCard recipe={recipe} /> */}
                                     <RecipeCard recipe={recipe} />
                                 </div>
                             ))}
@@ -89,7 +62,7 @@ const RecipePage = async() => {
                         <div className={styles.footer}>
                             Showing {recipes.length} {recipes.length === 1 ? 'recipe' : 'recipes'}
                         </div>
-                        <PaginationForRecipe totalItems={totalRecipe} totalPages={totalPage} itemsPerPage={itemsPerPage}/>
+                        {/* <PaginationForRecipe totalItems={totalRecipe} totalPages={totalPage} itemsPerPage={itemsPerPage}/> */}
                     </>
                 ) : (
                     <div className={styles.emptyState}>
@@ -106,6 +79,8 @@ const RecipePage = async() => {
                 )}
             </div>
         </div>
+        </div>
+
     );
 };
 

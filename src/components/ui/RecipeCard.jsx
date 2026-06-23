@@ -23,7 +23,7 @@ const RecipeCard = ({ recipe }) => {
     const id = recipe._id?.toString() || '';
 
     return (
-        <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden">
             {/* Image */}
             <div className="relative w-full h-48 bg-gray-200">
                 {recipe.recipeImage ? (
@@ -35,7 +35,7 @@ const RecipeCard = ({ recipe }) => {
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     />
                 ) : (
-                    <div className="w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center">
+                    <div className="w-full h-full bg-linear-to-r from-blue-400 to-blue-600 flex items-center justify-center">
                         <span className="text-white text-4xl font-bold">
                             {recipe.recipeName?.charAt(0) || 'R'}
                         </span>

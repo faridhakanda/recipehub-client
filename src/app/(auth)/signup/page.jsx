@@ -12,7 +12,7 @@ const SignUpPage = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const redirectTo = searchParams.get("redirect") || "/";
-  
+    //const cleanRedirect = redirectTo === "/" ? "/" : redirectTo;
   
   const handleSignUp = async (e) => {
     e.preventDefault();

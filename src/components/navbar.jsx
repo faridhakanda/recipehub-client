@@ -59,7 +59,7 @@ const Navbar = () => {
     );
 
     return (
-        <nav className={`p-2 md:p-3 text-sm md:text-md font-bold ${theme === 'dark' ? 'bg-gradient-to-r from-gray-900 to-gray-800 text-white' : 'bg-gradient-to-r from-white to-gray-50 text-gray-800'} shadow-md relative z-50`}>
+        <nav suppressHydrationWarning className={`p-2 md:p-3 text-sm md:text-md font-bold ${theme === 'dark' ? 'bg-linear-to-r from-gray-900 to-gray-800 text-white' : 'bg-gradient-to-r from-white to-gray-50 text-gray-800'} shadow-md relative z-50`}>
             <div className='max-w-7xl mx-auto px-2 sm:px-4 lg:px-6'>
                 {/* Desktop Navigation */}
                 <div className='hidden md:flex justify-between items-center'>
@@ -77,9 +77,15 @@ const Navbar = () => {
                     <div className='flex gap-3 lg:gap-4 items-center'>
                         <ThemeSwitch />
                         {!user ? (
+                            <>
                             <Link href={'/signin'} className='hover:opacity-70 transition-opacity'>
                                 Sign In
                             </Link>
+                            <Link href={'/signup'} className='hover:opacity-70 transition-opacity'>
+                                Sign Up
+                            </Link>
+                            </>
+                            
                         ) : (
                             <>
                                 <div className='flex items-center gap-2'>
@@ -145,9 +151,15 @@ const Navbar = () => {
                     <div className='flex items-center gap-3'>
                         <ThemeSwitch />
                         {!user ? (
-                            <Link href={'/signin'} className='hover:opacity-70 transition-opacity'>
-                                Sign In
-                            </Link>
+                            <>
+                                <Link href={'/signin'} className='hover:opacity-70 transition-opacity'>
+                                    Sign In
+                                </Link>
+                                <Link href={'/signup'} className='hover:opacity-70 transition-opacity'>
+                                    Sign Up
+                                </Link>
+                            </>
+                            
                         ) : (
                             <div className='flex items-center gap-2'>
                                 <Image 
@@ -191,9 +203,16 @@ const Navbar = () => {
                             )}
                             
                             {!user && (
-                                <Link href={'/signin'} onClick={closeMenu} className='block py-2 hover:opacity-70 transition-opacity'>
-                                    Sign In
-                                </Link>
+                                <>
+                                    <Link href={'/signin'} onClick={closeMenu} className='block py-2 hover:opacity-70 transition-opacity'>
+                                        Sign In
+                                    </Link>
+                                     <Link href={'/signup'} onClick={closeMenu} className='block py-2 hover:opacity-70 transition-opacity'>
+                                    Sign Up
+                                    </Link>
+                                </>
+                               
+                                
                             )}
                         </div>
                     </div>

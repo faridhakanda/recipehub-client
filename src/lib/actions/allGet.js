@@ -8,6 +8,11 @@ export const getAllUsers = async() => {
 }
 
 
+// fetch recipe by user id who created
+export const getUserAllRecipeByUserId = async(id) => {
+    return serverFetch(`/api/user-recipe/${id}`);
+}
+
 // fetch all recipe
 export const getAllRecipe = async() => {
     return serverFetch('/api/recipe');
@@ -19,6 +24,6 @@ export const getRecipeById = async(id) => {
 
 
 // fetch all plans
-export const getPlans = async(planId)=> {
+export const getPlansForRecipe = async(planId)=> {
     return serverFetch(`/api/plans?id=${planId}`);
 }

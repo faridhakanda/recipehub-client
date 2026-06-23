@@ -22,9 +22,13 @@ const ThemeSwitch = () => {
             {/* Toggle { theme === "dark" ? "Light" : "Dark"} */}
             {
                 theme === "dark" ? 
-                <Image  src="/light.png" alt="Light Icon" width={24} height={24} />
+                
+                    
+                <Image className="brightness-0 invert" src="/light.png" alt="Light Icon" width={24} height={24} />
+                
+                
                 :
-                <Image src="/dark.png" alt="Dark Icon" width={24} height={24} />
+                <Image className="brightness-0" src="/dark.png" alt="Dark Icon" width={24} height={24} />
             }
         </button>
     );

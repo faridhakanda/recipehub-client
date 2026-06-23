@@ -25,7 +25,7 @@ const Footer = () => {
                     {/* Logo & Description */}
                     <div className='space-y-4'>
                         <Link href={'/'} className='text-2xl md:text-3xl font-bold inline-block'>
-                            <span className='bg-gradient-to-l from-[#9514FA] to-[#4F39F6] bg-clip-text text-transparent'>
+                            <span className='bg-linear-to-l from-[#9514FA] to-[#4F39F6] bg-clip-text text-transparent'>
                                 RecipeHub
                             </span>
                         </Link>

@@ -74,7 +74,7 @@ const RecipePost = ({ user }) => {
             setIsUploading(false);
         }
     };
-    
+    console.log('user information in recipe post page: ', user, user?.id, user?.name, user?.email);
     // 3. Submit Recipe Form Data
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -113,9 +113,9 @@ const RecipePost = ({ user }) => {
             preparationTime,
             ingredients: ingredients.split('\n').filter(item => item.trim() !== ''),
             instructions: instructions.split('\n').filter(item => item.trim() !== ''),
-            authorId: user._id,
-            authorName: user.name,
-            authorEmail: user.email,
+            authorId: user?.id,
+            authorName: user?.name,
+            authorEmail: user?.email,
             likesCount: 0,
             isFeatured: false,
             status: 'Pending',

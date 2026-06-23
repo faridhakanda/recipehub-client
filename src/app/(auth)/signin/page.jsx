@@ -11,7 +11,7 @@ const SignInPage = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const redirectTo = searchParams.get("redirect") || "/";
-
+    //const cleanRedirectTo = redirectTo === "/" ? "/" : redirectTo;
   const handleSignUp = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);

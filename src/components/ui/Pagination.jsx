@@ -132,8 +132,8 @@ const PaginationForRecipe = ({
     }
 
     return (
-        <div className="w-full mx-auto mt-8">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white rounded-lg shadow-sm px-4 py-3 sm:px-6">
+        <div className="w-full mx-auto mt-8 mb-1">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white dark:bg-gray-800 dark:text-gray-200 rounded-lg shadow-sm px-4 py-3 sm:px-6">
                 {/* Items info */}
                 <div className="text-sm text-gray-600 order-2 sm:order-1">
                     <span className="font-medium">

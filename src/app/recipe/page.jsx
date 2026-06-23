@@ -46,7 +46,7 @@ const RecipePage = async() => {
     const totalPage = totalRecipe / 2;
     const itemsPerPage = totalRecipe / totalPage;
     return (
-        <div className={`styles.pageContainer`}>
+        <div className={`styles.pageContainer my-2`}>
             {/* Header */}
             <div className={styles.header}>
                 <div className={styles.headerContent}>

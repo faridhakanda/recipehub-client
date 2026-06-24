@@ -6,6 +6,7 @@ export const authClient = createAuthClient({
     // plugins: [
     //     adminClient()
     // ]
+    
 })
 
 export const { signIn, signUp, useSession } = createAuthClient()

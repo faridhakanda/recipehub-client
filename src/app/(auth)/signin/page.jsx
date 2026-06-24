@@ -6,6 +6,7 @@ import {Check} from "@gravity-ui/icons";
 import {Button, Description, FieldError, Form, Input, Label, Separator, TextField} from "@heroui/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { FcGoogle } from "react-icons/fc";
 
 const SignInPage = () => {
     const router = useRouter();
@@ -34,22 +35,22 @@ const SignInPage = () => {
     
   };
 
+  const handleGoogleSignIn = async() => {
+    await authClient.signIn.social({
+        provider: "google"
+    });
+  };
+
   return (
-    <Form className="flex w-96 flex-col gap-4 border-1 border-gray-300 p-2 mx-auto my-auto" onSubmit={handleSignUp}>
+    <Form className="flex w-96 flex-col gap-4 border-1 rounded-md border-gray-300 p-2 mx-auto my-4" onSubmit={handleSignUp}>
     {/* Name field */}
-    
+    <h2 className="text-xl font-bold mx-auto">SignIn RecipeHub</h2>
       {/* Email field */}
       <TextField
         isRequired
         name="email"
         type="email"
-        // validate={(value) => {
-        //   if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-        //     return "Please enter a valid email address";
-        //   }
-
-        //   return null;
-        // }}
+        
       >
         <Label>Email</Label>
         <Input placeholder="john@example.com" />
@@ -90,15 +91,7 @@ const SignInPage = () => {
           <Check />
           SignIn
         </Button>
-        {/* <Button type="reset" variant="secondary">
-          Reset
-        </Button> */}
-      </div>
-      {/* <div>
-        <Separator />
-        <div>Or</div>
-        <Separator />
-      </div> */}
+        </div>
       <div className="flex items-center gap-3 my-2">
                     <Separator className="flex-1" />
                     <span className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wider">
@@ -107,8 +100,9 @@ const SignInPage = () => {
                     <Separator className="flex-1" />
                 </div>
       <div>
-        <Button className={'w-full'}>
-            SignIn with Google
+      
+        <Button onClick={handleGoogleSignIn} className={'w-full'}>
+           <FcGoogle /> SignIn with Google 
         </Button>
       </div>
       <div className="flex gap-2 mx-auto items-center">

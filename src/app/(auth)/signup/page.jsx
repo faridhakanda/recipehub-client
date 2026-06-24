@@ -3,10 +3,11 @@
 
 import { authClient } from "@/lib/auth-client";
 import {ArrowUpToLine, Check} from "@gravity-ui/icons";
-import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
+import {Button, Description, FieldError, Form, Input, Label, Separator, TextField} from "@heroui/react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { FcGoogle } from "react-icons/fc";
 
 const SignUpPage = () => {
     const router = useRouter();
@@ -37,9 +38,16 @@ const SignUpPage = () => {
     
   };
 
+  const handleGoogleSignIn = async() => {
+    await authClient.signIn.social({
+        provider: "google"
+    });
+  };
+
   return (
-    <Form className="flex w-96 flex-col gap-4 border-1 border-gray-300 p-2 mx-auto my-auto" onSubmit={handleSignUp}>
+    <Form className="flex w-96 flex-col gap-4 rounded-md border-1 border-gray-300 p-2 mx-auto my-4" onSubmit={handleSignUp}>
     {/* Name field */}
+    <h2 className="text-xl font-bold mx-auto">Create your account in RecipeHub</h2>
     <TextField
         isRequired
         name="name"
@@ -101,14 +109,19 @@ const SignUpPage = () => {
           <Check />
           SignUp
         </Button>
-        {/* <Button type="reset" variant="secondary">
-          Reset
-        </Button> */}
+        
       </div>
-      <div>or</div>
+      <div className="flex items-center gap-3 my-2">
+                          <Separator className="flex-1" />
+                          <span className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wider">
+                              Or
+                          </span>
+                          <Separator className="flex-1" />
+                      </div>
+            <div></div>
       <div>
-        <Button className={'w-full'}>
-            SignIn with Google
+        <Button onClick={handleGoogleSignIn} className={'w-full'}>
+           <FcGoogle  /> SignIn with Google
         </Button>
       </div>
       <div className="flex gap-2 mx-auto items-center">

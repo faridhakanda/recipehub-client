@@ -14,8 +14,14 @@ export const auth = betterAuth({
     }),
     emailAndPassword: {
         enabled: true,
+        //disableSignUp: false 
     },
-    
+    socialProviders: {
+        google: {
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_SECRET_KEY
+        }
+    },
     user: {
         additionalFields: {
             image: {
@@ -29,7 +35,7 @@ export const auth = betterAuth({
             }
         }
     },
-    plugins: [
-        admin(),
-    ]
+    // plugins: [
+    //     admin()
+    // ]
 })

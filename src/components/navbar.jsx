@@ -66,7 +66,7 @@ const Navbar = () => {
                     {/* Logo */}
                     <Link href={'/'} className='text-lg md:text-xl font-bold hover:opacity-70 transition-opacity'>
                         
-                        <span className='bg-gradient-to-l  from-[#9514FA] to-[#4F39F6] bg-clip-text text-transparent'>RecipeHub</span>
+                        <span className='bg-linear-to-l  from-[#9514FA] to-[#4F39F6] bg-clip-text text-transparent'>RecipeHub</span>
                     </Link>
 
                     {/* Center Links */}
@@ -252,7 +252,7 @@ const Navbar = () => {
                 <div className='md:hidden flex justify-between items-center'>
                     {/* Logo */}
                     <Link href={'/'} className='text-lg font-bold hover:opacity-70 transition-opacity'>
-                        RecipeHub
+                        <span className='bg-linear-to-l  from-[#9514FA] to-[#4F39F6] bg-clip-text text-transparent'>RecipeHub</span>
                     </Link>
 
                     {/* Right Section */}

@@ -8,7 +8,7 @@ const Banner = () => {
                 {/* Text Content */}
                 <div className='w-full md:w-1/2 text-center md:text-left'>
                     <h2 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight'>
-                        <span className='bg-gradient-to-l from-[#9514FA] to-[#4F39F6] bg-clip-text text-transparent'>
+                        <span className='bg-linear-to-l from-[#9514FA] to-[#4F39F6] bg-clip-text text-transparent'>
                             RecipeHub
                         </span> 
                         is one of the biggest catering services of Mymensingh, Bangladesh

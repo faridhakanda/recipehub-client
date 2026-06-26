@@ -89,7 +89,7 @@ const Navbar = () => {
                         ) : (
                             <>
                                 <div className='flex items-center gap-2'>
-                                    <Image 
+                                    {/* <Image 
                                         //src={'/avatar.png'}
                                         src={user?.image || '/avatar.png'}
                                         alt={user?.name || 'User Avatar'}
@@ -99,31 +99,58 @@ const Navbar = () => {
                                     />
                                     <Link href={'/profile'} className='hover:opacity-70 transition-opacity hidden lg:inline'>
                                         {user?.name}
-                                    </Link>
+                                    </Link> */}
                                     <Dropdown>
                                         <Button aria-label="Menu" variant="secondary">
                                             {user?.name}
+                                            {/* <Image 
+                                                //src={'/avatar.png'}
+                                                src={user?.image || '/avatar.png'}
+                                                alt={user?.name || 'User Avatar'}
+                                                width={32}
+                                                height={32}
+                                                className=''
+                                            /> */}
                                         </Button>
                                         <Dropdown.Popover>
                                             <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
-                                            <Dropdown.Item id="new-file" textValue="New file">
+                                            <Dropdown.Item id="home" textValue="Home">
                                                 
-                                                    <Link href={'/new-file'}>
-                                                        <Label>Profile</Label>
+                                                    <Link href={'/dashboard/user'}>
+                                                        <Label>Home</Label>
                                                     </Link>
                                                
                                             </Dropdown.Item>
-                                            <Dropdown.Item id="copy-link" textValue="Copy link">
-                                                <Link href={'/copylin'}>
-                                                    <Label>Copy link</Label>
+                                            <Dropdown.Item id="my-recipe" textValue="My Recipe">
+                                                
+                                                    <Link href={'/dashboard/user/my-recipe'}>
+                                                        <Label>My Recipe</Label>
+                                                    </Link>
+                                               
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
+                                                <Link href={'/dashboard/saved-recipe'}>
+                                                    <Label>Saved Recipe</Label>
                                                 </Link>
                                                 
                                             </Dropdown.Item>
-                                            <Dropdown.Item id="edit-file" textValue="Edit file">
-                                                <Label>Edit file</Label>
+                                            <Dropdown.Item id="add-recipe" textValue="Add Recipe">
+                                                <Link href={'/dashboard/user/add-recipe'}>
+                                                    <Label>Add Recipe</Label>
+                                                </Link>
+                                                
                                             </Dropdown.Item>
-                                            <Dropdown.Item id="delete-file" textValue="Delete file" variant="danger">
-                                                <Label>Delete file</Label>
+                                            <Dropdown.Item id="favorite-recipe" textValue="Favorite Recipe" variant="secondary">
+                                                
+                                                <Link href={'/dashboard/user/favorite-recipe'}>
+                                                    <Label>Favorite Recipe</Label>
+                                                </Link>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="profile" textValue="Profile" >
+                                                
+                                                <Link href={'/dashboard/user/profile'}>
+                                                    <Label>Profile</Label>
+                                                </Link>
                                             </Dropdown.Item>
                                             </Dropdown.Menu>
                                         </Dropdown.Popover>
@@ -162,14 +189,69 @@ const Navbar = () => {
                             
                         ) : (
                             <div className='flex items-center gap-2'>
-                                <Image 
+                                {/* <Image 
                                     //src={'/avatar.png'}
                                     src={user?.image || '/avatar.png'}
                                     alt={user?.name || 'User Avatar'}
                                     width={28}
                                     height={28}
                                     className='rounded-full border-2 border-white'
-                                />
+                                /> */}
+                                <Dropdown>
+                                        <Button aria-label="Menu" variant="secondary">
+                                            {user?.name}
+                                            {/* <Image 
+                                                //src={'/avatar.png'}
+                                                src={user?.image || '/avatar.png'}
+                                                alt={user?.name || 'User Avatar'}
+                                                width={32}
+                                                height={32}
+                                                className=''
+                                            /> */}
+                                        </Button>
+                                        <Dropdown.Popover>
+                                            <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
+                                            <Dropdown.Item id="home" textValue="My Recipe">
+                                                
+                                                    <Link href={'/dashboard/user'}>
+                                                        <Label>Home</Label>
+                                                    </Link>
+                                               
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="my-recipe" textValue="My Recipe">
+                                                
+                                                    <Link href={'/dashboard/user/my-recipe'}>
+                                                        <Label>My Recipe</Label>
+                                                    </Link>
+                                               
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
+                                                <Link href={'/dashboard/saved-recipe'}>
+                                                    <Label>Saved Recipe</Label>
+                                                </Link>
+                                                
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="add-recipe" textValue="Add Recipe">
+                                                <Link href={'/dashboard/user/add-recipe'}>
+                                                    <Label>Add Recipe</Label>
+                                                </Link>
+                                                
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="favorite-recipe" textValue="Favorite Recipe" variant="secondary">
+                                                
+                                                <Link href={'/dashboard/user/favorite-recipe'}>
+                                                    <Label>Favorite Recipe</Label>
+                                                </Link>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="profile" textValue="Profile" >
+                                                
+                                                <Link href={'/dashboard/user/profile'}>
+                                                    <Label>Profile</Label>
+                                                </Link>
+                                            </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown.Popover>
+                                    </Dropdown>
                                 <button 
                                     onClick={handleLogout} 
                                     className='hover:opacity-70 transition-opacity text-sm'

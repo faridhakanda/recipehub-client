@@ -33,12 +33,12 @@ const RecipeCard = ({ recipe }) => {
                 {/* Recipe Name */}
                 <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-1">
                     {recipe.recipeName || 'Untitled Recipe'}
-                    <span>{recipe.authorId}</span>
-                    
+                    {/* <span>{recipe.authorId}</span>
+                     */}
                 </h3>
-                <span>Recipe Id: {recipe._id}</span>
+                {/* <span>Recipe Id: {recipe._id}</span>
                 <hr />
-                <span>Author Id: {recipe.authorId}</span>
+                <span>Author Id: {recipe.authorId}</span> */}
                 {/* Author and Likes */}
                 <div className="flex items-center justify-between text-sm text-gray-600">
                     <div className="flex items-center gap-2">

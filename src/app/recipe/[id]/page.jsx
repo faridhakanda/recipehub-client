@@ -31,10 +31,10 @@ export const generateMetadata = async({ params }) => {
 
 const RecipeDetailsPage = async ({ params }) => {
     const { id } = await params;
-    const user = await getUserSession();
-    if (!user) {
-        redirect(`/signin?redirect=/recipe/${id}`);
-    }
+    // const user = await getUserSession();
+    // if (!user) {
+    //     redirect(`/signin?redirect=/recipe/${id}`);
+    // }
     try {
         const { id } = await params;
         console.log('current id recipe is: ', id);

@@ -50,11 +50,11 @@ const Navbar = () => {
             <Link href={'/plans'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
                 Plans
             </Link>
-            {user && (
+            {/* {user && (
                 <Link href={'/dashboard'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
                     Dashboard
                 </Link>
-            )}
+            )} */}
         </>
     );
 
@@ -87,7 +87,9 @@ const Navbar = () => {
                             </>
                             
                         ) : (
-                            <>
+                            
+                            user?.role === 'user' ? (
+                                <>
                                 <div className='flex items-center gap-2'>
                                     {/* <Image 
                                         //src={'/avatar.png'}
@@ -163,6 +165,84 @@ const Navbar = () => {
                                     Logout
                                 </button>
                             </>
+                            ) : (
+                                <>
+                                <div className='flex items-center gap-2'>
+                                    {/* <Image 
+                                        //src={'/avatar.png'}
+                                        src={user?.image || '/avatar.png'}
+                                        alt={user?.name || 'User Avatar'}
+                                        width={32}
+                                        height={32}
+                                        className='rounded-full border-2 border-white'
+                                    />
+                                    <Link href={'/profile'} className='hover:opacity-70 transition-opacity hidden lg:inline'>
+                                        {user?.name}
+                                    </Link> */}
+                                    <Dropdown>
+                                        <Button aria-label="Menu" variant="secondary">
+                                            {user?.name}
+                                            {/* <Image 
+                                                //src={'/avatar.png'}
+                                                src={user?.image || '/avatar.png'}
+                                                alt={user?.name || 'User Avatar'}
+                                                width={32}
+                                                height={32}
+                                                className=''
+                                            /> */}
+                                        </Button>
+                                        <Dropdown.Popover>
+                                            <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
+                                            <Dropdown.Item id="home" textValue="Home">
+                                                
+                                                    <Link href={'/dashboard/admin'}>
+                                                        <Label>Home</Label>
+                                                    </Link>
+                                               
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="admin" textValue="Admin">
+                                                
+                                                    <Link href={'/dashboard/admin'}>
+                                                        <Label>Admin</Label>
+                                                    </Link>
+                                               
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
+                                                <Link href={'/dashboard/admin/saved-recipe'}>
+                                                    <Label>Admin Saved Recipe</Label>
+                                                </Link>
+                                                
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="add-recipe" textValue="Add Recipe">
+                                                <Link href={'/dashboard/admin'}>
+                                                    <Label>Admin Add Features</Label>
+                                                </Link>
+                                                
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="favorite-recipe" textValue="Favorite Recipe" variant="secondary">
+                                                
+                                                <Link href={'/dashboard/admin/favorite'}>
+                                                    <Label>Favorite Recipe</Label>
+                                                </Link>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="profile" textValue="Profile" >
+                                                
+                                                <Link href={'/dashboard/admin/profile'}>
+                                                    <Label>Profile</Label>
+                                                </Link>
+                                            </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown.Popover>
+                                    </Dropdown>
+                                </div>
+                                <button 
+                                    onClick={handleLogout} 
+                                    className='hover:opacity-70 transition-opacity'
+                                >
+                                    Logout
+                                </button>
+                            </>
+                            )
                         )}
                     </div>
                 </div>
@@ -188,26 +268,13 @@ const Navbar = () => {
                             </>
                             
                         ) : (
-                            <div className='flex items-center gap-2'>
-                                {/* <Image 
-                                    //src={'/avatar.png'}
-                                    src={user?.image || '/avatar.png'}
-                                    alt={user?.name || 'User Avatar'}
-                                    width={28}
-                                    height={28}
-                                    className='rounded-full border-2 border-white'
-                                /> */}
+                            
+                                user?.role === 'user' ? (
+                                   
+                                <div className='flex items-center gap-2'>
                                 <Dropdown>
                                         <Button aria-label="Menu" variant="secondary">
                                             {user?.name}
-                                            {/* <Image 
-                                                //src={'/avatar.png'}
-                                                src={user?.image || '/avatar.png'}
-                                                alt={user?.name || 'User Avatar'}
-                                                width={32}
-                                                height={32}
-                                                className=''
-                                            /> */}
                                         </Button>
                                         <Dropdown.Popover>
                                             <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
@@ -259,6 +326,74 @@ const Navbar = () => {
                                     Logout
                                 </button>
                             </div>
+                                ) :
+                               
+                                (
+                                    <div className='flex items-center gap-2'>
+                                {/* <Image 
+                                    //src={'/avatar.png'}
+                                    src={user?.image || '/avatar.png'}
+                                    alt={user?.name || 'User Avatar'}
+                                    width={28}
+                                    height={28}
+                                    className='rounded-full border-2 border-white'
+                                /> */}
+                                <Dropdown>
+                                        <Button aria-label="Menu" variant="secondary">
+                                            {user?.name}
+                                        </Button>
+                                        <Dropdown.Popover>
+                                            <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
+                                            <Dropdown.Item id="home" textValue="My Recipe">
+                                                
+                                                    <Link href={'/dashboard/admin'}>
+                                                        <Label>Home</Label>
+                                                    </Link>
+                                               
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="my-recipe" textValue="My Recipe">
+                                                
+                                                    <Link href={'/dashboard/admin/my-recipe'}>
+                                                        <Label>Admin Recipe</Label>
+                                                    </Link>
+                                               
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
+                                                <Link href={'/dashboard/admin/saved-recipe'}>
+                                                    <Label>Admin Saved Recipe</Label>
+                                                </Link>
+                                                
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="add-recipe" textValue="Add Recipe">
+                                                <Link href={'/dashboard/admin/add-recipe'}>
+                                                    <Label>Admin Add Recipe</Label>
+                                                </Link>
+                                                
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="favorite-recipe" textValue="Favorite Recipe" variant="secondary">
+                                                
+                                                <Link href={'/dashboard/admin/favorite-recipe'}>
+                                                    <Label>Admin Favorite Recipe</Label>
+                                                </Link>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item id="profile" textValue="Profile" >
+                                                
+                                                <Link href={'/dashboard/admin/profile'}>
+                                                    <Label>Admin Profile</Label>
+                                                </Link>
+                                            </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown.Popover>
+                                    </Dropdown>
+                                <button 
+                                    onClick={handleLogout} 
+                                    className='hover:opacity-70 transition-opacity text-sm'
+                                >
+                                    Logout
+                                </button>
+                            </div>
+                                )
+                            
                         )}
                         
                         {/* Hamburger Menu Button with Gravity UI Icons */}

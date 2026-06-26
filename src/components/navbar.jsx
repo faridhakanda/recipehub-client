@@ -47,9 +47,9 @@ const Navbar = () => {
             {/* <Link href={'/recipe-details'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
                 Recipe Details
             </Link> */}
-            <Link href={'/plans'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
+            {/* <Link href={'/plans'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
                 Plans
-            </Link>
+            </Link> */}
             {/* {user && (
                 <Link href={'/dashboard'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
                     Dashboard
@@ -65,7 +65,8 @@ const Navbar = () => {
                 <div className='hidden md:flex justify-between items-center'>
                     {/* Logo */}
                     <Link href={'/'} className='text-lg md:text-xl font-bold hover:opacity-70 transition-opacity'>
-                        RecipeHub
+                        
+                        <span className='bg-gradient-to-l  from-[#9514FA] to-[#4F39F6] bg-clip-text text-transparent'>RecipeHub</span>
                     </Link>
 
                     {/* Center Links */}

@@ -18,7 +18,7 @@ export const getUserToken = async() => {
 }
 
 
-export const requireRole = async() => {
+export const requireRole = async(role) => {
     const user = await getUserSession();
     if(!user) {
         redirect('/signin');

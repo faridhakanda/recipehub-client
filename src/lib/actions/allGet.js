@@ -18,8 +18,8 @@ export const getUserRecipeByRecipeId = async(id) => {
 }
 
 // fetch all recipe
-export const getAllRecipe = async() => {
-    return serverFetch('/api/recipe');
+export const getAllRecipe = async(queryString) => {
+    return serverFetch(`/api/recipe?${queryString}`);
 }
 // fetch recipe by id
 export const getRecipeById = async(id) => {

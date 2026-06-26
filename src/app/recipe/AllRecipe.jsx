@@ -1,32 +1,64 @@
 'use client';
 import RecipeCard from '@/components/ui/RecipeCard';
-import { getAllRecipe } from '@/lib/actions/allGet';
+//import { getAllRecipe } from '@/lib/actions/allGet';
 import React, { useState, useEffect } from 'react';
 import styles from './page.module.css';
-import { getUserSession } from '@/lib/core/session';
-import PaginationForRecipe from '@/components/ui/Pagination';
+// import { getUserSession } from '@/lib/core/session';
+// import PaginationForRecipe from '@/components/ui/Pagination';
 import RecipeFilter from './RecipeFilter';
 import { useRouter } from 'next/navigation';
+import { Pagination } from '@heroui/react';
 
-const AllRecipe = ({ filters, recipes }) => {
+const AllRecipe = ({ filters, recipes, total }) => {
     //const recipes =  getAllRecipe();
     console.log('all recipe: ', recipes);
     //const router = useRouter();
-    const totalRecipe = recipes.length;
-    const totalPage = totalRecipe / 2;
-    const itemsPerPage = totalRecipe / totalPage;
     
     const [searchQuery, setSearchQuery] = useState(filters.search);
+    // const [page, setPage] = useState(filters.page || 1);
+    const [page, setPage] = useState(1);
+
+    //const totalRecipe = total;
+    const totalRecipe = total;
+    const itemsPerPage = 2;
+    const totalPage = Math.ceil(totalRecipe / itemsPerPage);
+
+    const getPageNumbers = () => {
+        const pages = [];
+        pages.push(1);
+        if (page > 3) {
+            pages.push("ellipsis");
+        }
+        const start = Math.max(2, page - 1);
+        const end = Math.min(totalPage - 1, page+1);
+        for (let i = start; i <= end; i++) {
+            pages.push(i);
+        }
+        if (page < totalPage - 2) {
+            pages.push("ellipsis");
+        }
+        pages.push(totalPage);
+        console.log(pages, 'pages');
+        return pages;
+
+    };
+    const startItem = (page - 1) * itemsPerPage + 1;
+    const endItem = Math.min(page * itemsPerPage, totalRecipe);
+    
+    
     const router = useRouter();
     useEffect(() => {
         const sp = new URLSearchParams()
         if (searchQuery) {
             sp.set('search', searchQuery)
         }
+        if (page) {
+            sp.set('page', page)
+        }
         console.log('search params', sp.toString());
         const path = `?${sp.toString()}`
         router.push(path);
-    }, [router, searchQuery]);
+    }, [router, searchQuery, page]);
     
     return (
         <div className={`styles.pageContainer my-2 `}>
@@ -79,7 +111,43 @@ const AllRecipe = ({ filters, recipes }) => {
                         <div className={styles.footer}>
                             Showing {recipes.length} {recipes.length === 1 ? 'recipe' : 'recipes'}
                         </div>
-                        <PaginationForRecipe totalItems={totalRecipe} totalPages={totalPage} itemsPerPage={itemsPerPage}/>
+                        <Pagination className="w-full flex flex-col items-center text-center mx-auto justify-center">
+                            
+                                <Pagination.Summary className='mx-auto'>
+                                    Showing {startItem}-{endItem} of {totalRecipe} results
+                                </Pagination.Summary>
+                         
+                            
+                          
+                                <Pagination.Content className='mx-auto'>
+                            <Pagination.Item>
+                                <Pagination.Previous isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
+                                    <Pagination.PreviousIcon />
+                                    <span>Previous</span>
+                                </Pagination.Previous>
+                            </Pagination.Item>
+                            {getPageNumbers().map((p, i) =>
+                                p === "ellipsis" ? (
+                                <Pagination.Item key={`ellipsis-${i}`}>
+                                    <Pagination.Ellipsis />
+                                </Pagination.Item>
+                                ) : (
+                                <Pagination.Item key={i}>
+                                    <Pagination.Link isActive={p === page} onPress={() => setPage(p)}>
+                                    {p}
+                                    </Pagination.Link>
+                                </Pagination.Item>
+                                ),
+                            )}
+                            <Pagination.Item>
+                                <Pagination.Next isDisabled={page === totalPage} onPress={() => setPage((p) => p + 1)}>
+                                <span>Next</span>
+                                <Pagination.NextIcon />
+                                </Pagination.Next>
+                            </Pagination.Item>
+                            </Pagination.Content>
+                           
+                        </Pagination>
                     </>
                 ) : (
                     <div className={styles.emptyState}>

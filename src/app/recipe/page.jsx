@@ -13,7 +13,8 @@ const RecipePage = async({ searchParams }) => {
     // console.log('all recipe: ', recipes);
     const filters = await searchParams;
     const filterObject = {
-        ...filters
+        ...filters,
+        page: filters.page || 1,
     }
     const querySearch = new URLSearchParams(filters);
     const queryString = querySearch.toString()
@@ -22,13 +23,14 @@ const RecipePage = async({ searchParams }) => {
     const recipes = await getAllRecipe(queryString);
     //const router = useRouter();
     const totalRecipe = recipes.length;
-    const totalPage = totalRecipe / 2;
-    const itemsPerPage = totalRecipe / totalPage;
+    // const totalPage = totalRecipe / 2;
+    // const itemsPerPage = totalRecipe / totalPage;
     
+    const total = totalRecipe;
     
     return (
         <div>
-            <AllRecipe filters={filterObject} recipes={recipes}/>
+            <AllRecipe filters={filterObject} recipes={recipes || []} total={total}/>
         </div>
        
     );

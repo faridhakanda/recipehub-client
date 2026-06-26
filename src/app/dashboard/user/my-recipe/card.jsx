@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
+import DeleteRecipe from './[id]/DeleteRecipe';
+import UpdateRecipe from './[id]/UpdateRecipe';
 
 const RecipeCard = ({ recipe }) => {
     const id = recipe._id?.toString() || '';
@@ -31,8 +33,12 @@ const RecipeCard = ({ recipe }) => {
                 {/* Recipe Name */}
                 <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-1">
                     {recipe.recipeName || 'Untitled Recipe'}
+                    <span>{recipe.authorId}</span>
+                    
                 </h3>
-
+                <span>Recipe Id: {recipe._id}</span>
+                <hr />
+                <span>Author Id: {recipe.authorId}</span>
                 {/* Author and Likes */}
                 <div className="flex items-center justify-between text-sm text-gray-600">
                     <div className="flex items-center gap-2">
@@ -53,6 +59,15 @@ const RecipeCard = ({ recipe }) => {
                 >
                     View Details
                 </Link>
+                {/* Update Recipe */}
+                <div className='py-2'>
+                    <UpdateRecipe recipe={recipe}/>
+                </div>
+                {/* Delete Recipe */}
+                <div className=''>
+                    <DeleteRecipe recipe={recipe}/>
+                </div>
+               
             </div>
         </div>
     );

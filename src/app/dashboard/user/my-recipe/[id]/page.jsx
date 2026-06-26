@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import { deleteRecipe } from '@/lib/actions/allDelete';
 
 export const generateMetadata = async({ params }) => {
     try {
@@ -36,6 +37,7 @@ const RecipeDetailsPage = async ({ params }) => {
         
         //const recipeDetails = await getRecipeById(id);
         const recipeDetails = await getUserRecipeByRecipeId(id);
+        //const deleteRecipeByUser = await deleteRecipe(recipeDetails.id, recipeDetails.authorId);
         if (!recipeDetails) {
             notFound();
         }
@@ -45,7 +47,7 @@ const RecipeDetailsPage = async ({ params }) => {
             month: 'long',
             day: 'numeric'
         });
-
+        
         return (
             <>
                 <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
@@ -106,6 +108,9 @@ const RecipeDetailsPage = async ({ params }) => {
                                             </svg>
                                             <span>{formattedDate}</span>
                                         </div>
+                                    </div>
+                                    <div>
+                                        <h2>Delete</h2>
                                     </div>
                                 </div>
                             </div>

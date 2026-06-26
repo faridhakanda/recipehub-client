@@ -11,7 +11,7 @@ const RecipePage = async() => {
     const user = await getUserSession();
     const recipes = await getUserAllRecipeByUserId(user?.id);
     //const recipes = await getAllRecipe();
-    console.log('all recipe: ', recipes);
+    console.log('all recipe for user: ', recipes);
     
     // const totalRecipe = recipes.length;
     // const totalPage = totalRecipe / 2;

@@ -1,5 +1,5 @@
 //import { serverMutation } from "../core/serverMutation";
-
+'use server';
 import { serverMutation } from "../core/serverMutation";
 
 //const SEVER = process.env.SERVER_URL;
@@ -8,7 +8,8 @@ const SERVER = process.env.SERVER_URL;
 // for user recipe post
 export const postRecipe = async(recipeData) => {
     //return serverMutation('/api/recipe', recipeData);
-    const res = await fetch('http://localhost:5000/api/recipe', {
+    // 'http://localhost:5000/api/recipe'
+    const res = await fetch(`${SERVER}/api/recipe`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

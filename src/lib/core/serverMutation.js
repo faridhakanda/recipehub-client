@@ -1,5 +1,5 @@
 //const SERVER_URL = process.env.SERVER_URL;
-
+'use server';
 const PUBLIC_SERVER_URL = process.env.SERVER_URL;
 export const serverMutation = async(path, data, method='POST') => {
     const url = `${PUBLIC_SERVER_URL}${path}`

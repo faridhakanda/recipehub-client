@@ -14,9 +14,10 @@ const AllRecipe = ({ filters, recipes, total }) => {
     console.log('all recipe: ', recipes);
     //const router = useRouter();
     
-    const [searchQuery, setSearchQuery] = useState(filters.search);
+    const [searchQuery, setSearchQuery] = useState(filters.search || '');
     // const [page, setPage] = useState(filters.page || 1);
-    const [page, setPage] = useState(1);
+    const [selectedCategory, setSelectedCategory] = useState(filters.category || '');
+    const [page, setPage] = useState(Number(filters.page) || 1);
 
     //const totalRecipe = total;
     const totalRecipe = total;
@@ -52,13 +53,16 @@ const AllRecipe = ({ filters, recipes, total }) => {
         if (searchQuery) {
             sp.set('search', searchQuery)
         }
+        if(selectedCategory && selectedCategory !== 'all') {
+            sp.set('category', selectedCategory)
+        }
         if (page) {
             sp.set('page', page)
         }
         console.log('search params', sp.toString());
         const path = `?${sp.toString()}`
         router.push(path);
-    }, [router, searchQuery, page]);
+    }, [router, searchQuery, selectedCategory, page]);
     
     return (
         <div className={`styles.pageContainer my-2 `}>
@@ -93,6 +97,8 @@ const AllRecipe = ({ filters, recipes, total }) => {
                 <RecipeFilter 
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}
+                    selectedCategory={selectedCategory}
+                    setSelectedCategory={setSelectedCategory}
                     
                 />
             </div>

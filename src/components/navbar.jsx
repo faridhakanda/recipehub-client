@@ -10,10 +10,73 @@ import { IoClose } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 
 import {Button, Dropdown, Label} from "@heroui/react";
-import { Briefcase, CirclePlus, CloudCheck, House, Person, ShoppingCart, Star } from '@gravity-ui/icons';
+import { ArrowRightFromSquare, Briefcase, CirclePlus, CloudCheck, House, Person, ShoppingCart, Star } from '@gravity-ui/icons';
 
 
-const UserNavigationPopoverDashboard = () => {
+
+const AdminNavigationPopoverDashboard = () => {
+    const router = useRouter();
+    const handleLogoutForAdmin = async() => {
+        await authClient.signOut();
+        router.push('/signin');
+    }
+    return (
+        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
+            <Dropdown.Item id="home" textValue="Home">
+                
+                    <Link href={'/dashboard/admin'}>
+                        <Label>Home</Label>
+                    </Link>
+                
+            </Dropdown.Item>
+            <Dropdown.Item id="admin" textValue="Admin">
+                
+                    <Link href={'/dashboard/admin'}>
+                        <Label>Admin</Label>
+                    </Link>
+                
+            </Dropdown.Item>
+            <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
+                <Link href={'/dashboard/admin/saved-recipe'}>
+                    <Label>Admin Saved Recipe</Label>
+                </Link>
+                
+            </Dropdown.Item>
+            <Dropdown.Item id="add-recipe" textValue="Add Recipe">
+                <Link href={'/dashboard/admin'}>
+                    <Label>Admin Add Features</Label>
+                </Link>
+                
+            </Dropdown.Item>
+            <Dropdown.Item id="favorite-recipe" textValue="Favorite Recipe" variant="secondary">
+                
+                <Link href={'/dashboard/admin/favorite'}>
+                    <Label>Favorite Recipe</Label>
+                </Link>
+            </Dropdown.Item>
+            <Dropdown.Item id="profile" textValue="Profile" >
+                
+                <Link href={'/dashboard/admin/profile'}>
+                    <Label>Profile</Label>
+                </Link>
+            </Dropdown.Item>
+            <Dropdown.Item id="logout" textValue="Logout" >
+                <ArrowRightFromSquare />
+                <Link onClick={handleLogoutForAdmin} href={'/signin'}>
+                    <Label>Logout</Label>
+                </Link>
+            </Dropdown.Item>
+        </Dropdown.Menu>
+    )
+}
+ 
+ const UserNavigationPopoverDashboard = () => {
+    const router = useRouter();
+    const handleLogoutForUser = async() => {
+        await authClient.signOut();
+        router.push('/signin');
+        //setIsMenuOpen(false);
+    }
     return (
         <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
             
@@ -66,48 +129,10 @@ const UserNavigationPopoverDashboard = () => {
                     <Label>Profile</Label>
                 </Link>
             </Dropdown.Item>
-        </Dropdown.Menu>
-    )
-}
-const AdminNavigationPopoverDashboard = () => {
-    return (
-        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
-            <Dropdown.Item id="home" textValue="Home">
-                
-                    <Link href={'/dashboard/admin'}>
-                        <Label>Home</Label>
-                    </Link>
-                
-            </Dropdown.Item>
-            <Dropdown.Item id="admin" textValue="Admin">
-                
-                    <Link href={'/dashboard/admin'}>
-                        <Label>Admin</Label>
-                    </Link>
-                
-            </Dropdown.Item>
-            <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
-                <Link href={'/dashboard/admin/saved-recipe'}>
-                    <Label>Admin Saved Recipe</Label>
-                </Link>
-                
-            </Dropdown.Item>
-            <Dropdown.Item id="add-recipe" textValue="Add Recipe">
-                <Link href={'/dashboard/admin'}>
-                    <Label>Admin Add Features</Label>
-                </Link>
-                
-            </Dropdown.Item>
-            <Dropdown.Item id="favorite-recipe" textValue="Favorite Recipe" variant="secondary">
-                
-                <Link href={'/dashboard/admin/favorite'}>
-                    <Label>Favorite Recipe</Label>
-                </Link>
-            </Dropdown.Item>
-            <Dropdown.Item id="profile" textValue="Profile" >
-                
-                <Link href={'/dashboard/admin/profile'}>
-                    <Label>Profile</Label>
+            <Dropdown.Item id="logout" textValue="Logout" >
+                <ArrowRightFromSquare />
+                <Link onClick={handleLogoutForUser} href={'/signin'}>
+                    <Label>Logout</Label>
                 </Link>
             </Dropdown.Item>
         </Dropdown.Menu>
@@ -124,11 +149,11 @@ const Navbar = () => {
 
     
 
-    const handleLogout = async () => {
-        await authClient.signOut();
-        router.push('/signin');
-        setIsMenuOpen(false);
-    };
+    // const handleLogout = async () => {
+    //     await authClient.signOut();
+    //     router.push('/signin');
+    //     setIsMenuOpen(false);
+    // };
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -137,7 +162,7 @@ const Navbar = () => {
     const closeMenu = () => {
         setIsMenuOpen(false);
     };
-
+   
     // Navigation links component to avoid duplication
     const NavLinks = ({ mobile = false }) => (
         <>
@@ -205,12 +230,12 @@ const Navbar = () => {
                                         </Dropdown.Popover>
                                     </Dropdown>
                                 </div>
-                                <button 
+                                {/* <button 
                                     onClick={handleLogout} 
                                     className='hover:opacity-70 transition-opacity'
                                 >
                                     Logout
-                                </button>
+                                </button> */}
                             </>
                             ) : (
                                 <>
@@ -234,12 +259,12 @@ const Navbar = () => {
                                         </Dropdown.Popover>
                                     </Dropdown>
                                 </div>
-                                <button 
+                                {/* <button 
                                     onClick={handleLogout} 
                                     className='hover:opacity-70 transition-opacity'
                                 >
                                     Logout
-                                </button>
+                                </button> */}
                             </>
                             )
                         )}
@@ -288,12 +313,12 @@ const Navbar = () => {
                                             <UserNavigationPopoverDashboard />
                                         </Dropdown.Popover>
                                     </Dropdown>
-                                <button 
+                                {/* <button 
                                     onClick={handleLogout} 
                                     className='hover:opacity-70 transition-opacity text-sm'
                                 >
                                     Logout
-                                </button>
+                                </button> */}
                             </div>
                                 ) :
                                
@@ -317,12 +342,12 @@ const Navbar = () => {
                                             <AdminNavigationPopoverDashboard />
                                         </Dropdown.Popover>
                                     </Dropdown>
-                                <button 
+                                {/* <button 
                                     onClick={handleLogout} 
                                     className='hover:opacity-70 transition-opacity text-sm'
                                 >
                                     Logout
-                                </button>
+                                </button> */}
                             </div>
                                 )
                             
@@ -335,6 +360,7 @@ const Navbar = () => {
                             aria-label='Toggle menu'
                         >
                             {isMenuOpen ? <IoClose size={24} /> : <GiHamburgerMenu size={24} />}
+                            
                         </button>
                     </div>
                 </div>
@@ -346,10 +372,12 @@ const Navbar = () => {
                             <NavLinks mobile />
                             
                             {user && (
-                                <Link href={'/profile'} onClick={closeMenu} className='block py-2 hover:opacity-70 transition-opacity'>
+                                <Link href={`/dashboard/${user?.role}/profile`} onClick={closeMenu} className='block py-2 hover:opacity-70 transition-opacity'>
                                     Profile
                                 </Link>
+                                
                             )}
+                            
                             
                             {!user && (
                                 <>

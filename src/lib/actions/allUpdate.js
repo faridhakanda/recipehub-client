@@ -11,3 +11,14 @@ export const updateRecipe = async(recipeId, authorId, data) => {
     })
     return res.json();
 }
+
+export const userProfileUpdate = async(userId, data) => {
+    const res  = await fetch(`${SERVER_URL}/api/auth/update-profile/${userId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    return res.json();
+}

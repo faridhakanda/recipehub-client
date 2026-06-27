@@ -1,3 +1,6 @@
+
+
+
 //import RecipeCard from '@/components/ui/RecipeCard';
 import { getAllRecipe } from '@/lib/actions/allGet';
 import React from 'react';
@@ -14,7 +17,7 @@ const RecipePage = async({ searchParams }) => {
     const filters = await searchParams;
     const filterObject = {
         ...filters,
-        //page: filters.page || 1,
+        page: filters.page || 1,
     }
     const querySearch = new URLSearchParams(filters);
     const queryString = querySearch.toString()

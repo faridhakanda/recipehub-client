@@ -1,3 +1,6 @@
+
+
+
 'use client';
 import RecipeCard from '@/components/ui/RecipeCard';
 //import { getAllRecipe } from '@/lib/actions/allGet';
@@ -41,7 +44,7 @@ const AllRecipe = ({ filters, recipes, total }) => {
         pages.push(totalPage);
         console.log(pages, 'pages');
         return pages;
-
+    
     };
     const startItem = (page - 1) * itemsPerPage + 1;
     const endItem = Math.min(page * itemsPerPage, totalRecipe);
@@ -117,7 +120,32 @@ const AllRecipe = ({ filters, recipes, total }) => {
                         <div className={styles.footer}>
                             Showing {recipes.length} {recipes.length === 1 ? 'recipe' : 'recipes'}
                         </div>
-                        <Pagination className="w-full flex flex-col items-center text-center mx-auto justify-center">
+                        <Pagination className="justify-center">
+                            <Pagination.Content>
+                                <Pagination.Item>
+                                <Pagination.Previous isDisabled={page === 1} onPress={() => setPage((p) => p - 1)}>
+                                    <Pagination.PreviousIcon />
+                                    <span>Previous</span>
+                                </Pagination.Previous>
+                                </Pagination.Item>
+                                {Array.from({length: totalPage}, (_, i) => i + 1).map((p) => (
+                                <Pagination.Item key={p}>
+                                    <Pagination.Link isActive={p === page} onPress={() => setPage(p)}>
+                                    {p}
+                                    </Pagination.Link>
+                                </Pagination.Item>
+                                ))}
+                                <Pagination.Item>
+                                <Pagination.Next isDisabled={page === totalPage} onPress={() => setPage((p) => p + 1)}>
+                                    <span>Next</span>
+                                    <Pagination.NextIcon />
+                                </Pagination.Next>
+                                </Pagination.Item>
+                            </Pagination.Content>
+                        </Pagination>
+
+
+                        {/* <Pagination className="w-full flex flex-col items-center text-center mx-auto justify-center">
                             
                                 <Pagination.Summary className='mx-auto'>
                                     Showing {startItem}-{endItem} of {totalRecipe} results
@@ -153,7 +181,7 @@ const AllRecipe = ({ filters, recipes, total }) => {
                             </Pagination.Item>
                             </Pagination.Content>
                            
-                        </Pagination>
+                        </Pagination> */}
                     </>
                 ) : (
                     <div className={styles.emptyState}>

@@ -125,7 +125,7 @@ const Navbar = () => {
                                                
                                             </Dropdown.Item>
                                             <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
-                                                <Link href={'/dashboard/saved-recipe'}>
+                                                <Link href={'/dashboard/user/saved-recipe'}>
                                                     <Label>Saved Recipe</Label>
                                                 </Link>
                                                 
@@ -287,7 +287,7 @@ const Navbar = () => {
                                                
                                             </Dropdown.Item>
                                             <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
-                                                <Link href={'/dashboard/saved-recipe'}>
+                                                <Link href={'/dashboard/user/saved-recipe'}>
                                                     <Label>Saved Recipe</Label>
                                                 </Link>
                                                 

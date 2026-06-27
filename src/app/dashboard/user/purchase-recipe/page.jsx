@@ -3,7 +3,7 @@ import { getUserSession } from '@/lib/core/session';
 import RecipeCard from './card';
 import { getUserAllRecipeByUserId } from '@/lib/actions/allGet';
 
-const RecipePage = async() => {
+const PurchaseRecipePage = async() => {
     const user = await getUserSession();
     const recipes = await getUserAllRecipeByUserId(user?.id);
     console.log('all recipe for user: ', recipes);
@@ -18,7 +18,7 @@ const RecipePage = async() => {
                             <div>
                                 <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white flex items-center gap-2 sm:gap-3">
                                     <span>🍳</span>
-                                    My Saved Recipe Collection
+                                    My Purchased Recipe Collection
                                 </h1>
                                 <p className="text-blue-100 dark:text-blue-200 mt-1 sm:mt-2 text-xs sm:text-sm md:text-base">
                                     Discover and explore delicious recipes from our community
@@ -73,7 +73,7 @@ const RecipePage = async() => {
     );
 };
 
-export default RecipePage;
+export default PurchaseRecipePage;
 
 
 // import React from 'react';

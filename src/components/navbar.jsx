@@ -10,6 +10,109 @@ import { IoClose } from 'react-icons/io5';
 import { useRouter } from 'next/navigation';
 
 import {Button, Dropdown, Label} from "@heroui/react";
+import { Briefcase, CirclePlus, CloudCheck, House, Person, ShoppingCart, Star } from '@gravity-ui/icons';
+
+
+const UserNavigationPopoverDashboard = () => {
+    return (
+        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
+            
+            <Dropdown.Item id="home" textValue="Home">
+                    <House />
+                    <Link href={'/dashboard/user'}>
+                        <Label>Home</Label>
+                    </Link>
+                
+            </Dropdown.Item>
+            <Dropdown.Item id="add-recipe" textValue="Post Recipe">
+                <CirclePlus />
+                <Link href={'/dashboard/user/post-recipe'}>
+                    <Label>Post Recipe</Label>
+                </Link>
+                
+            </Dropdown.Item>
+            <Dropdown.Item id="added-recipe" textValue="Added Recipe">
+                    <Briefcase />
+                    <Link href={'/dashboard/user/added-recipe'}>
+                        <Label>Added Recipe</Label>
+                    </Link>
+                
+            </Dropdown.Item>
+            <Dropdown.Item id="purchase-recipe" textValue="Purchase Recipe">
+                    <ShoppingCart />
+                    <Link href={'/dashboard/user/purchase-recipe'}>
+                        <Label>Purchased Recipe</Label>
+                    </Link>
+                
+            </Dropdown.Item>
+            <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
+                <CloudCheck />
+                <Link href={'/dashboard/user/saved-recipe'}>
+                    <Label>Saved Recipe</Label>
+                </Link>
+                
+            </Dropdown.Item>
+            
+
+            <Dropdown.Item id="favorite-recipe" textValue="Favorite Recipe" variant="secondary">
+                <Star />
+                <Link href={'/dashboard/user/favorite-recipe'}>
+                    <Label>Favorite Recipe</Label>
+                </Link>
+            </Dropdown.Item>
+            <Dropdown.Item id="profile" textValue="Profile" >
+                <Person />
+                <Link href={'/dashboard/user/profile'}>
+                    <Label>Profile</Label>
+                </Link>
+            </Dropdown.Item>
+        </Dropdown.Menu>
+    )
+}
+const AdminNavigationPopoverDashboard = () => {
+    return (
+        <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
+            <Dropdown.Item id="home" textValue="Home">
+                
+                    <Link href={'/dashboard/admin'}>
+                        <Label>Home</Label>
+                    </Link>
+                
+            </Dropdown.Item>
+            <Dropdown.Item id="admin" textValue="Admin">
+                
+                    <Link href={'/dashboard/admin'}>
+                        <Label>Admin</Label>
+                    </Link>
+                
+            </Dropdown.Item>
+            <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
+                <Link href={'/dashboard/admin/saved-recipe'}>
+                    <Label>Admin Saved Recipe</Label>
+                </Link>
+                
+            </Dropdown.Item>
+            <Dropdown.Item id="add-recipe" textValue="Add Recipe">
+                <Link href={'/dashboard/admin'}>
+                    <Label>Admin Add Features</Label>
+                </Link>
+                
+            </Dropdown.Item>
+            <Dropdown.Item id="favorite-recipe" textValue="Favorite Recipe" variant="secondary">
+                
+                <Link href={'/dashboard/admin/favorite'}>
+                    <Label>Favorite Recipe</Label>
+                </Link>
+            </Dropdown.Item>
+            <Dropdown.Item id="profile" textValue="Profile" >
+                
+                <Link href={'/dashboard/admin/profile'}>
+                    <Label>Profile</Label>
+                </Link>
+            </Dropdown.Item>
+        </Dropdown.Menu>
+    )
+}
 const Navbar = () => {
     const router = useRouter();
     const { theme, setTheme } = useTheme();
@@ -44,17 +147,6 @@ const Navbar = () => {
             <Link href={'/recipe'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
                 Browse Recipes
             </Link>
-            {/* <Link href={'/recipe-details'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
-                Recipe Details
-            </Link> */}
-            {/* <Link href={'/plans'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
-                Plans
-            </Link> */}
-            {/* {user && (
-                <Link href={'/dashboard'} onClick={closeMenu} className={`${mobile ? 'block py-2' : ''} hover:opacity-70 transition-opacity`}>
-                    Dashboard
-                </Link>
-            )} */}
         </>
     );
 
@@ -109,46 +201,7 @@ const Navbar = () => {
                                         </Button>
                                         
                                         <Dropdown.Popover>
-                                            <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
-                                            <Dropdown.Item id="home" textValue="Home">
-                                                
-                                                    <Link href={'/dashboard/user'}>
-                                                        <Label>Home</Label>
-                                                    </Link>
-                                               
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="my-recipe" textValue="My Recipe">
-                                                
-                                                    <Link href={'/dashboard/user/my-recipe'}>
-                                                        <Label>My Recipe</Label>
-                                                    </Link>
-                                               
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
-                                                <Link href={'/dashboard/user/saved-recipe'}>
-                                                    <Label>Saved Recipe</Label>
-                                                </Link>
-                                                
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="add-recipe" textValue="Add Recipe">
-                                                <Link href={'/dashboard/user/add-recipe'}>
-                                                    <Label>Add Recipe</Label>
-                                                </Link>
-                                                
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="favorite-recipe" textValue="Favorite Recipe" variant="secondary">
-                                                
-                                                <Link href={'/dashboard/user/favorite-recipe'}>
-                                                    <Label>Favorite Recipe</Label>
-                                                </Link>
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="profile" textValue="Profile" >
-                                                
-                                                <Link href={'/dashboard/user/profile'}>
-                                                    <Label>Profile</Label>
-                                                </Link>
-                                            </Dropdown.Item>
-                                            </Dropdown.Menu>
+                                            <UserNavigationPopoverDashboard />
                                         </Dropdown.Popover>
                                     </Dropdown>
                                 </div>
@@ -177,46 +230,7 @@ const Navbar = () => {
                                             />
                                         </Button>
                                         <Dropdown.Popover>
-                                            <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
-                                            <Dropdown.Item id="home" textValue="Home">
-                                                
-                                                    <Link href={'/dashboard/admin'}>
-                                                        <Label>Home</Label>
-                                                    </Link>
-                                               
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="admin" textValue="Admin">
-                                                
-                                                    <Link href={'/dashboard/admin'}>
-                                                        <Label>Admin</Label>
-                                                    </Link>
-                                               
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
-                                                <Link href={'/dashboard/admin/saved-recipe'}>
-                                                    <Label>Admin Saved Recipe</Label>
-                                                </Link>
-                                                
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="add-recipe" textValue="Add Recipe">
-                                                <Link href={'/dashboard/admin'}>
-                                                    <Label>Admin Add Features</Label>
-                                                </Link>
-                                                
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="favorite-recipe" textValue="Favorite Recipe" variant="secondary">
-                                                
-                                                <Link href={'/dashboard/admin/favorite'}>
-                                                    <Label>Favorite Recipe</Label>
-                                                </Link>
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="profile" textValue="Profile" >
-                                                
-                                                <Link href={'/dashboard/admin/profile'}>
-                                                    <Label>Profile</Label>
-                                                </Link>
-                                            </Dropdown.Item>
-                                            </Dropdown.Menu>
+                                            <AdminNavigationPopoverDashboard />
                                         </Dropdown.Popover>
                                     </Dropdown>
                                 </div>
@@ -271,46 +285,7 @@ const Navbar = () => {
                                             />
                                         </Button>
                                         <Dropdown.Popover>
-                                            <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
-                                            <Dropdown.Item id="home" textValue="My Recipe">
-                                                
-                                                    <Link href={'/dashboard/user'}>
-                                                        <Label>Home</Label>
-                                                    </Link>
-                                               
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="my-recipe" textValue="My Recipe">
-                                                
-                                                    <Link href={'/dashboard/user/my-recipe'}>
-                                                        <Label>My Recipe</Label>
-                                                    </Link>
-                                               
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
-                                                <Link href={'/dashboard/user/saved-recipe'}>
-                                                    <Label>Saved Recipe</Label>
-                                                </Link>
-                                                
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="add-recipe" textValue="Add Recipe">
-                                                <Link href={'/dashboard/user/add-recipe'}>
-                                                    <Label>Add Recipe</Label>
-                                                </Link>
-                                                
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="favorite-recipe" textValue="Favorite Recipe" variant="secondary">
-                                                
-                                                <Link href={'/dashboard/user/favorite-recipe'}>
-                                                    <Label>Favorite Recipe</Label>
-                                                </Link>
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="profile" textValue="Profile" >
-                                                
-                                                <Link href={'/dashboard/user/profile'}>
-                                                    <Label>Profile</Label>
-                                                </Link>
-                                            </Dropdown.Item>
-                                            </Dropdown.Menu>
+                                            <UserNavigationPopoverDashboard />
                                         </Dropdown.Popover>
                                     </Dropdown>
                                 <button 
@@ -339,46 +314,7 @@ const Navbar = () => {
                                             />
                                         </Button>
                                         <Dropdown.Popover>
-                                            <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
-                                            <Dropdown.Item id="home" textValue="My Recipe">
-                                                
-                                                    <Link href={'/dashboard/admin'}>
-                                                        <Label>Home</Label>
-                                                    </Link>
-                                               
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="my-recipe" textValue="My Recipe">
-                                                
-                                                    <Link href={'/dashboard/admin/my-recipe'}>
-                                                        <Label>Admin Recipe</Label>
-                                                    </Link>
-                                               
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="saved-recipe" textValue="Saved Recipe">
-                                                <Link href={'/dashboard/admin/saved-recipe'}>
-                                                    <Label>Admin Saved Recipe</Label>
-                                                </Link>
-                                                
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="add-recipe" textValue="Add Recipe">
-                                                <Link href={'/dashboard/admin/add-recipe'}>
-                                                    <Label>Admin Add Recipe</Label>
-                                                </Link>
-                                                
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="favorite-recipe" textValue="Favorite Recipe" variant="secondary">
-                                                
-                                                <Link href={'/dashboard/admin/favorite-recipe'}>
-                                                    <Label>Admin Favorite Recipe</Label>
-                                                </Link>
-                                            </Dropdown.Item>
-                                            <Dropdown.Item id="profile" textValue="Profile" >
-                                                
-                                                <Link href={'/dashboard/admin/profile'}>
-                                                    <Label>Admin Profile</Label>
-                                                </Link>
-                                            </Dropdown.Item>
-                                            </Dropdown.Menu>
+                                            <AdminNavigationPopoverDashboard />
                                         </Dropdown.Popover>
                                     </Dropdown>
                                 <button 

@@ -105,15 +105,15 @@ const Navbar = () => {
                                     </Link> */}
                                     <Dropdown>
                                         <Button aria-label="Menu" variant="secondary">
-                                            {user?.name}
-                                            {/* <Image 
+                                            {/* {user?.name} */}
+                                            <Image 
                                                 //src={'/avatar.png'}
                                                 src={user?.image || '/avatar.png'}
                                                 alt={user?.name || 'User Avatar'}
-                                                width={32}
-                                                height={32}
-                                                className=''
-                                            /> */}
+                                                width={24}
+                                                height={24}
+                                                className='rounded-full'
+                                            />
                                         </Button>
                                         <Dropdown.Popover>
                                             <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
@@ -182,15 +182,15 @@ const Navbar = () => {
                                     </Link> */}
                                     <Dropdown>
                                         <Button aria-label="Menu" variant="secondary">
-                                            {user?.name}
-                                            {/* <Image 
+                                            {/* {user?.name} */}
+                                            <Image 
                                                 //src={'/avatar.png'}
                                                 src={user?.image || '/avatar.png'}
                                                 alt={user?.name || 'User Avatar'}
-                                                width={32}
-                                                height={32}
-                                                className=''
-                                            /> */}
+                                                width={24}
+                                                height={24}
+                                                className='rounded-full'
+                                            />
                                         </Button>
                                         <Dropdown.Popover>
                                             <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
@@ -275,7 +275,15 @@ const Navbar = () => {
                                 <div className='flex items-center gap-2'>
                                 <Dropdown>
                                         <Button aria-label="Menu" variant="secondary">
-                                            {user?.name}
+                                            {/* {user?.image} */}
+                                            <Image 
+                                                //src={'/avatar.png'}
+                                                src={user?.image || '/avatar.png'}
+                                                alt={user?.name || 'User Avatar'}
+                                                width={24}
+                                                height={24}
+                                                className='rounded-full'
+                                            />
                                         </Button>
                                         <Dropdown.Popover>
                                             <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
@@ -341,7 +349,15 @@ const Navbar = () => {
                                 /> */}
                                 <Dropdown>
                                         <Button aria-label="Menu" variant="secondary">
-                                            {user?.name}
+                                            {/* {user?.name} */}
+                                            <Image 
+                                                //src={'/avatar.png'}
+                                                src={user?.image || '/avatar.png'}
+                                                alt={user?.name || 'User Avatar'}
+                                                width={24}
+                                                height={24}
+                                                className='rounded-full'
+                                            />
                                         </Button>
                                         <Dropdown.Popover>
                                             <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>

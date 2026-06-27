@@ -92,29 +92,22 @@ const Navbar = () => {
                             user?.role === 'user' ? (
                                 <>
                                 <div className='flex items-center gap-2'>
-                                    {/* <Image 
-                                        //src={'/avatar.png'}
-                                        src={user?.image || '/avatar.png'}
-                                        alt={user?.name || 'User Avatar'}
-                                        width={32}
-                                        height={32}
-                                        className='rounded-full border-2 border-white'
-                                    />
-                                    <Link href={'/profile'} className='hover:opacity-70 transition-opacity hidden lg:inline'>
-                                        {user?.name}
-                                    </Link> */}
+                                    
                                     <Dropdown>
-                                        <Button aria-label="Menu" variant="secondary">
-                                            {/* {user?.name} */}
+                                        
+                                        <Button 
+                                            className="w-8 h-8 min-w-0 p-0 rounded-full overflow-hidden bg-transparent hover:bg-gray-100 dark:hover:bg-zinc-800"
+                                        >
                                             <Image 
                                                 //src={'/avatar.png'}
                                                 src={user?.image || '/avatar.png'}
                                                 alt={user?.name || 'User Avatar'}
-                                                width={24}
-                                                height={24}
-                                                className='rounded-full'
+                                                width={32}
+                                                height={32}
+                                                className="w-full h-full object-cover"
                                             />
                                         </Button>
+                                        
                                         <Dropdown.Popover>
                                             <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
                                             <Dropdown.Item id="home" textValue="Home">
@@ -169,27 +162,18 @@ const Navbar = () => {
                             ) : (
                                 <>
                                 <div className='flex items-center gap-2'>
-                                    {/* <Image 
-                                        //src={'/avatar.png'}
-                                        src={user?.image || '/avatar.png'}
-                                        alt={user?.name || 'User Avatar'}
-                                        width={32}
-                                        height={32}
-                                        className='rounded-full border-2 border-white'
-                                    />
-                                    <Link href={'/profile'} className='hover:opacity-70 transition-opacity hidden lg:inline'>
-                                        {user?.name}
-                                    </Link> */}
+                                    
                                     <Dropdown>
-                                        <Button aria-label="Menu" variant="secondary">
-                                            {/* {user?.name} */}
+                                        <Button 
+                                            className="w-8 h-8 min-w-0 p-0 rounded-full overflow-hidden bg-transparent hover:bg-gray-100 dark:hover:bg-zinc-800"
+                                        >
                                             <Image 
                                                 //src={'/avatar.png'}
                                                 src={user?.image || '/avatar.png'}
                                                 alt={user?.name || 'User Avatar'}
-                                                width={24}
-                                                height={24}
-                                                className='rounded-full'
+                                                width={32}
+                                                height={32}
+                                                className="w-full h-full object-cover"
                                             />
                                         </Button>
                                         <Dropdown.Popover>
@@ -274,15 +258,16 @@ const Navbar = () => {
                                    
                                 <div className='flex items-center gap-2'>
                                 <Dropdown>
-                                        <Button aria-label="Menu" variant="secondary">
-                                            {/* {user?.image} */}
+                                        <Button 
+                                            className="w-8 h-8 min-w-0 p-0 rounded-full overflow-hidden bg-transparent hover:bg-gray-100 dark:hover:bg-zinc-800"
+                                        >
                                             <Image 
                                                 //src={'/avatar.png'}
                                                 src={user?.image || '/avatar.png'}
                                                 alt={user?.name || 'User Avatar'}
-                                                width={24}
-                                                height={24}
-                                                className='rounded-full'
+                                                width={32}
+                                                height={32}
+                                                className="w-full h-full object-cover"
                                             />
                                         </Button>
                                         <Dropdown.Popover>
@@ -339,24 +324,18 @@ const Navbar = () => {
                                
                                 (
                                     <div className='flex items-center gap-2'>
-                                {/* <Image 
-                                    //src={'/avatar.png'}
-                                    src={user?.image || '/avatar.png'}
-                                    alt={user?.name || 'User Avatar'}
-                                    width={28}
-                                    height={28}
-                                    className='rounded-full border-2 border-white'
-                                /> */}
+                                
                                 <Dropdown>
-                                        <Button aria-label="Menu" variant="secondary">
-                                            {/* {user?.name} */}
+                                        <Button 
+                                            className="w-8 h-8 min-w-0 p-0 rounded-full overflow-hidden bg-transparent hover:bg-gray-100 dark:hover:bg-zinc-800"
+                                        >
                                             <Image 
                                                 //src={'/avatar.png'}
                                                 src={user?.image || '/avatar.png'}
                                                 alt={user?.name || 'User Avatar'}
-                                                width={24}
-                                                height={24}
-                                                className='rounded-full'
+                                                width={32}
+                                                height={32}
+                                                className="w-full h-full object-cover"
                                             />
                                         </Button>
                                         <Dropdown.Popover>

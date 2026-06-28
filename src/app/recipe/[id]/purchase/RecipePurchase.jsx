@@ -63,7 +63,7 @@ const RecipePurchasePayment = ({ recipeDetail, user }) => {
                         One-time payment to access this recipe
                     </p>
                     <div className="mt-3">
-                        <span className="text-3xl font-bold text-amber-500 dark:text-amber-400">$19.99</span>
+                        <span className="text-3xl font-bold text-amber-500 dark:text-amber-400">$4.99</span>
                         <span className="text-sm text-gray-500 dark:text-zinc-400 ml-1">one-time</span>
                     </div>
                 </div>
@@ -75,14 +75,15 @@ const RecipePurchasePayment = ({ recipeDetail, user }) => {
                 )}
 
                 <form onSubmit={handlePurchase}>
-                    <input type="hidden" name="plan" value="premium" />
+                    {/* <input type="hidden" name="plan" value="premium" /> */}
+                     <input type="hidden" name="plan" value="recipe" />
                     <input type="hidden" name="recipeId" value={recipeDetail?._id} />
                     <input type="hidden" name="recipeName" value={recipeDetail?.recipeName} />
                     
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full text-center text-sm font-semibold px-4 py-4 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full text-center text-sm font-semibold px-4 py-4 rounded-xl bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         {loading ? (
                             <span className="flex items-center justify-center gap-2">

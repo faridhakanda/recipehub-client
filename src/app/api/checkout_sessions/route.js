@@ -30,6 +30,7 @@ export async function POST(request) {
     // price from stripe.js
     // const priceId = PLAN_PRICE_ID['premium'];
     const priceId = PLAN_PRICE_ID[planId];
+    //const recipePrice = PLAN_PRICE_ID[recipePlan];
     if (!priceId) {
         return NextResponse.json(
             { error: 'Invalid plan selected' },
@@ -79,7 +80,8 @@ export async function POST(request) {
     //     }
         
     // }
-    if (recipeId && planId === 'premium') {
+    //if (recipeId && planId === 'premium') {
+    if (recipeId) {
             try {
                 // Create a one-time payment session for recipe
                 const session = await stripe.checkout.sessions.create({
@@ -94,14 +96,16 @@ export async function POST(request) {
                                     name: recipeName || 'Recipe Purchase',
                                     description: `One-time payment to access the recipe: ${recipeName}`,
                                 },
-                                unit_amount: 1999, // $19.99 in cents
+                                //unit_amount: 1999, // $19.99 in cents
+                                unit_amount: 499,
                             },
                             quantity: 1,
                         },
                     ],
                     mode: 'payment',
                     metadata: {
-                        plan: 'premium',
+                        // plan: 'premium',
+                        plan: 'recipe',
                         recipeId: recipeId,
                         recipeName: recipeName || 'Recipe',
                         userId: userId || 'unknown',

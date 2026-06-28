@@ -44,7 +44,8 @@ export default async function Success({ searchParams }) {
             const purchaseData = {
                 userId: session.metadata.userId,
                 email: customerEmail,
-                planId: 'premium',
+                // planId: 'premium',
+                planId: 'recipe',
                 amount: amount,
                 paymentStatus: session.status,
                 transactionId: transactionId,

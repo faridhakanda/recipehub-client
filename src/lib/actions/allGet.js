@@ -1,11 +1,13 @@
-import { protectedFetch } from "../core/server";
+import { headers } from "next/headers";
+import { authHeader, protectedFetch } from "../core/server";
 import { serverFetch } from "../core/serverFetch";
 
 //const SEVER = process.env.SERVER_URL;
 
 // for fetch all user information
 export const getAllUsers = async() => {
-    return serverFetch(`/api/users`);
+    //return serverFetch(`/api/users`);
+    return protectedFetch(`/api/users`);
 }
 
 
@@ -19,7 +21,12 @@ export const getUserRecipeByRecipeId = async(id) => {
 
 // fetch all recipe
 export const getAllRecipe = async(queryString) => {
-    return serverFetch(`/api/recipe?${queryString}`);
+    return serverFetch(`/api/recipe?${queryString}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            ... await authHeader(),
+        }
+    });
 }
 // fetch recipe by id
 export const getRecipeById = async(id) => {

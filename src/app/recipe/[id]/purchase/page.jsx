@@ -85,6 +85,10 @@ const RecipePurchase = async ({ params }) => {
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-zinc-950 py-4 sm:py-6 md:py-8 px-3 sm:px-6 lg:px-8">
+            
+            <div>
+                <RecipePurchasePayment recipeDetail={recipeDetail} user={user}/>
+            </div>
             <div className="max-w-4xl mx-auto">
                 {/* Back Button */}
                 <Link 
@@ -284,9 +288,9 @@ const RecipePurchase = async ({ params }) => {
                     </div>
                 </div>
             </div>
-            <div>
+            {/* <div>
                 <RecipePurchasePayment recipeDetail={recipeDetail} user={user}/>
-            </div>
+            </div> */}
         </div>
     );
 };

@@ -129,29 +129,72 @@ export async function POST(request) {
     
     
     // here is user recipe add plans for premium
-    const session = await stripe.checkout.sessions.create({
-        customer_email: user?.email,
-        //customer_creation: 'always',
+    // old code for subscription and it's work perfectly without transaction id
+    // const session = await stripe.checkout.sessions.create({
+    //     customer_email: user?.email,
+    //     //customer_creation: 'always',
         
-        //customer_id: user?._id,
-      line_items: [
-        {
-          price: priceId,
-          quantity: 1,
+    //     //customer_id: user?._id,
+    //   line_items: [
+    //     {
+    //       price: priceId,
+    //       quantity: 1,
+    //     },
+    //   ],
+    //   mode: 'subscription',
+    //   //metadata: {planId},
+    //   metadata: {
+    //     plan: planId,
+    //     //userId: user?._id || user.id,
+    //     userId: userId || 'unknown',
+    //     userEmail: user?.email,
+    //     // new add below
+    //     paymentType: 'subscription_purchase'
+    //   },
+    //   success_url: `${origin}/plans/success?session_id={CHECKOUT_SESSION_ID}`,
+    //   // added 
+    //   cancel_url: `${origin}/plans`,
+    // });
+
+
+    // now new code 
+    const session = await stripe.checkout.sessions.create({
+        //recipeId: recipeId,
+        customer_email: user?.email,
+        payment_method_types: ['card'],
+        line_items: [
+            {
+                // price_data: {
+                //     currency: 'usd',
+                //     product_data: {
+                //         name: 'Subscription Purchase for unlimited recipe add',
+                //         description: `One-time payment to access unlimited recipe add`,
+                //     },
+                //     unit_amount: 1999, // $19.99 in cents
+                //     //unit_amount: 499,
+                // },
+                price: priceId,
+                quantity: 1,
+            },
+        ],
+        mode: 'subscription',
+        //mode: 'payment',
+        metadata: {
+            //plan: 'premium',
+            //plan: 'recipe',
+            plan: planId,
+            userId: userId || 'unknown',
+            userEmail: user?.email,
+            paymentType: 'subscription_purchase',
         },
-      ],
-      mode: 'subscription',
-      //metadata: {planId},
-      metadata: {
-        plan: planId,
-        //userId: user?._id || user.id,
-        userId: userId || 'unknown',
-        userEmail: user?.email,
-      },
-      success_url: `${origin}/plans/success?session_id={CHECKOUT_SESSION_ID}`,
-      // added 
-      cancel_url: `${origin}/plans`,
+        success_url: `${origin}/plans/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${origin}/plans`,
     });
+    
+
+
+
+
     return NextResponse.redirect(session.url, 303)
   } catch (err) {
     return NextResponse.json(

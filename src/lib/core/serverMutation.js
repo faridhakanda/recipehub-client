@@ -27,7 +27,8 @@ export const protectedMutation = async(path, data, method='POST') => {
         headers: {
             'Content-Type': 'appliction/json',
             ...await authHeader(),
-        }
-    });
+        },
+        body: JSON.stringify(data)
+    })
     return res.json();
 }

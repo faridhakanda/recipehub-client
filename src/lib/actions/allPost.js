@@ -28,3 +28,7 @@ export const createRecipe = async(data) => {
 export const createSubscriptionPlan = async(subInfo) => {
     return serverMutation('/api/subscriptions', subInfo);
 }
+
+export const buyRecipe = async(buyerInfomation) => {
+    return serverMutation('/api/buy-recipe', buyerInfomation);
+}

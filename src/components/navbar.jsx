@@ -223,6 +223,7 @@ const Navbar = () => {
                                                 height={32}
                                                 className="w-full h-full object-cover"
                                             />
+                                            
                                         </Button>
                                         
                                         <Dropdown.Popover>
@@ -253,6 +254,7 @@ const Navbar = () => {
                                                 height={32}
                                                 className="w-full h-full object-cover"
                                             />
+                                            
                                         </Button>
                                         <Dropdown.Popover>
                                             <AdminNavigationPopoverDashboard />

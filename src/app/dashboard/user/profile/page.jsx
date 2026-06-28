@@ -6,7 +6,8 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { userProfileUpdate } from '@/lib/actions/allUpdate';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
+import { Gem } from '@gravity-ui/icons';
 
 const ProfilePage = () => {
     const session = authClient.useSession();
@@ -20,7 +21,9 @@ const ProfilePage = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-
+    if (!user) {
+        redirect('/');
+    }
     // Handle update profile
     const handleUpdate = async (e) => {
         e.preventDefault();
@@ -62,8 +65,10 @@ const ProfilePage = () => {
                 <div className="text-center">
                     <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto"></div>
                     <p className="mt-4 text-gray-600 dark:text-zinc-400">Loading profile...</p>
+
                 </div>
             </div>
+            
         );
     }
 
@@ -285,6 +290,20 @@ const ProfilePage = () => {
                                 </svg>
                                 Dashboard
                             </Link>
+                            {user?.plan === 'free' &&
+                                <>
+                                    
+                                    <Link
+                                        href="/plans"
+                                        className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 text-gray-700 dark:text-zinc-300 rounded-lg text-sm font-medium transition"
+                                    >
+                                        <Gem />
+                                        Plans
+                                    </Link>
+                                </>
+                                
+                            }
+                            
                         </div>
 
                         {/* Profile Info Grid */}

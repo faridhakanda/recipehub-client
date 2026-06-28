@@ -1,4 +1,6 @@
 
+
+
 import { NextResponse } from 'next/server'
 import { headers } from 'next/headers'
 
@@ -14,6 +16,11 @@ export async function POST(request) {
     const formData = await request.formData();
     const planId = formData.get('plan');
 
+    // for recipe buy
+    //const recipePlan = formData.get('plan');
+    const recipeId = formData.get('recipeId');
+    const recipeName = formData.get('recipeName');
+    console.log('recipe buy: ', recipeId, planId, recipeName);
     if (!planId) {
         return NextResponse.json(
             { error: 'Plan ID is required'},
@@ -37,9 +44,87 @@ export async function POST(request) {
             { status: 401 }
         );
     }
-
+    
     const userId = user?._id || user._id || user.id || user.userId;
     // Create Checkout Sessions from body params.
+    
+    // for recipe buy
+    // if (planId === 'premium' && recipeId) {
+    //     try {
+    //         const session = await stripe.checkout.sessions.create({
+    //             customer_email: user?.email,
+    //             line_items: [
+    //                 {
+    //                     price: priceId,
+    //                     quantity: 1,
+    //                 }
+    //             ],
+    //             mode: 'subscription',
+    //             metadata: {
+    //                 plan: planId, 
+    //                 userId: userId || 'unknown',
+    //                 userEmail: user?.email,
+    //                 recipeId: recipeId,
+    //                 recipeName: recipeName,
+    //             },
+    //             success_url: `${origin}/recipe/${recipeId}/purchase/success?session_id={CHECKOUT_SESSION_ID}`,
+    //             cancel_url: `${origin}/recipe/${recipeId}`
+    //         });
+    //         return NextResponse.redirect(session.url, 303)
+    //     } catch (err){
+    //         return NextResponse.json(
+    //             { error: err.message },
+    //             { status: err.statusCode || 500 }
+    //         )
+    //     }
+        
+    // }
+    if (recipeId && planId === 'premium') {
+            try {
+                // Create a one-time payment session for recipe
+                const session = await stripe.checkout.sessions.create({
+                    //recipeId: recipeId,
+                    customer_email: user?.email,
+                    payment_method_types: ['card'],
+                    line_items: [
+                        {
+                            price_data: {
+                                currency: 'usd',
+                                product_data: {
+                                    name: recipeName || 'Recipe Purchase',
+                                    description: `One-time payment to access the recipe: ${recipeName}`,
+                                },
+                                unit_amount: 1999, // $19.99 in cents
+                            },
+                            quantity: 1,
+                        },
+                    ],
+                    mode: 'payment',
+                    metadata: {
+                        plan: 'premium',
+                        recipeId: recipeId,
+                        recipeName: recipeName || 'Recipe',
+                        userId: userId || 'unknown',
+                        userEmail: user?.email,
+                        paymentType: 'recipe_purchase',
+                    },
+                    success_url: `${origin}/recipe/${recipeId}/purchase/success?session_id={CHECKOUT_SESSION_ID}`,
+                    cancel_url: `${origin}/recipe/${recipeId}`,
+                });
+                
+                return NextResponse.json({ url: session.url });
+                
+            } catch (stripeError) {
+                console.error('Stripe error:', stripeError);
+                return NextResponse.json(
+                    { error: stripeError.message || 'Failed to create checkout session' },
+                    { status: 500 }
+                );
+            }
+        }
+    
+    
+    // here is user recipe add plans for premium
     const session = await stripe.checkout.sessions.create({
         customer_email: user?.email,
         //customer_creation: 'always',
@@ -47,10 +132,6 @@ export async function POST(request) {
         //customer_id: user?._id,
       line_items: [
         {
-          // Provide the exact Price ID (for example, price_1234) of the product you want to sell
-          // user pro id is : prod_UjYPTU2E6bRmcx
-          // user premium plan id is: prod_UjYuTjfaPWJ2ZD
-          // this was default plan price id: price_1Tk50rPLuBM45V2iuHslW6GD
           price: priceId,
           quantity: 1,
         },
@@ -75,3 +156,7 @@ export async function POST(request) {
     )
   }
 }
+
+
+
+

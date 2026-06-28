@@ -3,8 +3,9 @@ import { redirect } from 'next/navigation'
 //import { stripe } from '../../lib/stripe'
 import { stripe } from '@/lib/stripe'
 import Link from 'next/link'
-import { createSubscriptionPlan } from '@/lib/actions/allPost'
+//import { createSubscriptionPlan } from '@/lib/actions/allPost'
 import { CheckShape } from '@gravity-ui/icons';
+import { buyRecipe } from '@/lib/actions/allPost';
 export default async function Success({ searchParams }) {
   const { session_id } = await searchParams;
   
@@ -18,8 +19,7 @@ export default async function Success({ searchParams }) {
     metadata, 
     payment_intent,
     amount_total,
-    subscription,
-    session
+    subscription
     
   } = await stripe.checkout.sessions.retrieve(session_id, {
     expand: [
@@ -34,21 +34,6 @@ export default async function Success({ searchParams }) {
 
     ]
   })
-
-
-//  const session = await stripe.checkout.sessions.retrieve(session_id, {
-//     expand: [
-//         'line_items', 
-//         'payment_intent', 
-//         'subscription', 
-//         'subscription.latest_invoice',
-//         'subscription.latest_invoice.payment_intent',
-//         'customer',
-//         //'payment',
-        
-    
-//     ]
-//   })
   
   
   if (status === 'open') {
@@ -59,19 +44,14 @@ export default async function Success({ searchParams }) {
     //const transactionId = sessions.payment_intent?.id;
     const amount = amount_total ? amount_total / 100 : 0;
     //const paymentDate = new Date()
-    //const paymentStatus = session.status;
     const paymentStatus = status;
     //const userId = metadata.userId;
     const customerEmail =  customer_details?.email || '';
-    //const customerEmail =  session.customer_details?.email || '';
     //const customerId = customer_details?.id || '';
-    //const transactionId = session_id?.id;
-    const transactionId = session_id.payment_intent?.id || session_id;
-    //const transactionId = session.payment_intent?.id || session_id;
+    const transactionId = session_id?.id;
     const subscriptionId = subscription?.id;
-    //const subscriptionId = session.subscription?.id;
     console.log(metadata, 'meta data');
-    
+
     const subsInfo = {
         userId: metadata.userId,
         email: customerEmail,
@@ -82,11 +62,12 @@ export default async function Success({ searchParams }) {
         subscriptionId: subscriptionId
         
     }
-    const result = await createSubscriptionPlan(subsInfo);
+    //const result = await createSubscriptionPlan(subsInfo);
+    const result = await buyRecipe(subsInfo);
     console.log('Subscription created: ', result);
     return (
     
-
+    
 
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-orange-50 via-amber-50/30 to-white dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 px-4">
           <div className="max-w-md w-full bg-white dark:bg-zinc-900 rounded-2xl shadow-xl p-8 text-center border border-green-100 dark:border-green-900/30">
@@ -104,12 +85,12 @@ export default async function Success({ searchParams }) {
                 {customerEmail}
               </span>.
             </p>
-
+            
             <div className="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 mb-6 text-sm text-zinc-600 dark:text-zinc-400">
               <p>Your premium subscription has been activated.</p>
               <p className="mt-1">You now have access to all premium features!</p>
             </div>
-
+            
             <Link
               href="/"
               className="inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40"

@@ -1,9 +1,42 @@
 "use client";
 
+import { recipeLike } from "@/lib/actions/allPost";
+import { getUserSession } from "@/lib/core/session";
 import {Rocket} from "@gravity-ui/icons";
 import {Button, Modal} from "@heroui/react";
+import { redirect } from "next/navigation";
 
 const Like = ({ recipeDetails}) => {
+
+    const handleLike = async() => {
+        try {
+            const recipe = recipeDetails;
+            const user = await getUserSession();
+            const userId = user?.id;
+            const userName = user?.name;
+            const userEmail = user?.email;
+            const payloadForLike = {
+                // recipeId: recipe._id,
+                // recipeName: recipe.recipeName,
+                // recipeImage: recipe.recipeImage,
+                // authorName: recipe.authorName,
+                // authorEmail: recipe.authorEmail,
+                // likesCount: recipe.likesCount,
+                // status: recipe.status,
+                recipe: recipe,
+                userId,
+                userName,
+                userEmail,
+            }
+            const payload = await recipeLike(recipe._id, payloadForLike);
+            if (payload.insertedId) {
+                redirect(`/recipe/${recipe._id}`);
+            }
+        } catch(error) {
+            console.error("Error liking recipe: ", error);
+        }
+        
+    }
     
   return (
     <Modal>
@@ -33,7 +66,7 @@ const Like = ({ recipeDetails}) => {
               </p>
             </Modal.Body>
             <Modal.Footer>
-              <Button className="w-full" slot="close">
+              <Button onClick={handleLike} className="w-full" slot="close">
                 Conform to Like
               </Button>
             </Modal.Footer>

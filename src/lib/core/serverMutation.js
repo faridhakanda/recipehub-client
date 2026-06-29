@@ -25,10 +25,24 @@ export const protectedMutation = async(path, data, method='POST') => {
     const res = await fetch(url, {
         method: method,
         headers: {
-            'Content-Type': 'appliction/json',
-            ...await authHeader(),
+            'Content-Type': 'application/json',
+            ... await authHeader(),
         },
         body: JSON.stringify(data)
-    })
-    return res.json();
+    });
+    //return res.json();
+    if (!res.ok) {
+        const text = await res.text();
+        console.error('Server response status: ', res.status);
+        console.error('Server response text: ', text);
+        throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    
+    try {
+        return await res.json();
+    } catch (error) {
+        const text = await res.text();
+        console.error('Failed to parse JSON. Response was: ', text);
+        throw error;
+    }
 }

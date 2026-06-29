@@ -12,7 +12,8 @@ const Page = async ({ params }) => {
     console.log('Current User Session:', user);
     
     if (!user) {
-        redirect(`/login?redirect=/job/${id}/apply`);
+        // redirect(`/signin?redirect=/job/${id}/apply`);
+        redirect(`/signin?redirect=/dashboard/user/post-recipe`);
     }
     
     // Auth Role Guard Screen
@@ -28,7 +29,7 @@ const Page = async ({ params }) => {
                         Only job seekers can apply for positions. Please sign in with a seeker account to proceed.
                     </p>
                     <Link 
-                        href="/auth/signin" 
+                        href={`/signin?redirect=/dashboard/user/post-recipe`} 
                         className="inline-block w-full px-4 py-2.5 bg-gray-100 dark:bg-zinc-800 hover:bg-gray-200 dark:hover:bg-zinc-700 text-gray-700 dark:text-zinc-200 rounded-lg text-sm font-medium transition"
                     >
                         Switch Account

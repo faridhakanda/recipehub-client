@@ -1,6 +1,6 @@
 //import { serverMutation } from "../core/serverMutation";
 'use server';
-import { serverMutation } from "../core/serverMutation";
+import { protectedMutation, serverMutation } from "../core/serverMutation";
 
 //const SEVER = process.env.SERVER_URL;
 
@@ -31,4 +31,18 @@ export const createSubscriptionPlan = async(subInfo) => {
 
 export const buyRecipe = async(buyerInfomation) => {
     return serverMutation('/api/buy-recipe', buyerInfomation);
+}
+
+
+// for secure and authenticated user
+// like, save and favorite api 
+
+export const recipeLike = async(id, recipeInformationWithUser) => {
+    return protectedMutation(`/api/recipe-like/${id}`, recipeInformationWithUser);
+}
+export const recipeSave = async(id, recipeInfomationWithUser) => {
+    return protectedMutation(`/api/recipe-save/${id}`, recipeInfomationWithUser);
+}
+export const recipeFavorite = async(id, recipeInfomationWithUser) => {
+    return protectedMutation(`/api/recipe-favorite/${id}`, recipeInfomationWithUser);
 }

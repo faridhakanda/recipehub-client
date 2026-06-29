@@ -113,7 +113,7 @@ const RecipePost = ({ user }) => {
             redirect('/recipe');
             setRecipe(savedRecipe);
         }
-
+        
         setErrors({});
         setIsEditing(false);
     };

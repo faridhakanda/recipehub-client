@@ -45,3 +45,17 @@ export const getPlansForRecipe = async(planId)=> {
 export const getUserByAdmin = async(path) => {
     return protectedFetch(path);
 }
+
+
+// for recipe like, save and favorite
+
+export const recipeLikeByUser = async(id) => {
+    return protectedFetch(`/api/recipe-like/${id}`);
+}
+
+export const recipeSaveByUser = async(id) => {
+    return protectedFetch(`/api/recipe-favorite/${id}`);
+}
+export const recipeFavoriteByUser = async(id) => {
+    return protectedFetch(`/api/recipe-favorite/${id}`);
+}

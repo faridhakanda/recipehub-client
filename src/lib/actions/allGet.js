@@ -16,10 +16,12 @@ export const getPopularRecipe = async() => {
 
 // fetch recipe by user id who created
 export const getUserAllRecipeByUserId = async(id) => {
-    return serverFetch(`/api/user-recipe?authorId=${id}`);
+    // return serverFetch(`/api/user-recipe?authorId=${id}`);
+    return protectedFetch(`/api/user-recipe?authorId=${id}`);
 }
 export const getUserRecipeByRecipeId = async(id) => {
-    return serverFetch(`/api/user-recipe/${id}`);
+    // return serverFetch(`/api/user-recipe/${id}`);
+    return protectedFetch(`/api/user-recipe/${id}`);
 }
 
 // fetch all recipe

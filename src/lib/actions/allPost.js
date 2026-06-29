@@ -1,5 +1,6 @@
 //import { serverMutation } from "../core/serverMutation";
 'use server';
+import { authHeader } from "../core/server";
 import { protectedMutation, serverMutation } from "../core/serverMutation";
 
 //const SEVER = process.env.SERVER_URL;
@@ -12,7 +13,8 @@ export const postRecipe = async(recipeData) => {
     const res = await fetch(`${SERVER}/api/recipe`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            ...await authHeader()
         },
         body: JSON.stringify(recipeData)
     })
@@ -22,15 +24,18 @@ export const postRecipe = async(recipeData) => {
 }
 
 export const createRecipe = async(data) => {
-    return serverMutation('/api/recipe', data);
+    //return serverMutation('/api/recipe', data);
+    return protectedMutation('/api/recipe', data);
 }
 // for subscription
 export const createSubscriptionPlan = async(subInfo) => {
-    return serverMutation('/api/subscriptions', subInfo);
+    // return serverMutation('/api/subscriptions', subInfo);
+    return protectedMutation('/api/subscriptions', subInfo);
 }
 
 export const buyRecipe = async(buyerInfomation) => {
-    return serverMutation('/api/buy-recipe', buyerInfomation);
+    // return serverMutation('/api/buy-recipe', buyerInfomation);
+    return protectedMutation('/api/buy-recipe', buyerInfomation);
 }
 
 

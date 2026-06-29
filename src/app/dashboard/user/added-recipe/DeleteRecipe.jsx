@@ -11,7 +11,7 @@ import { redirect } from "next/navigation";
 const DeleteRecipe = ({ recipe }) => {
     const handleRecipeDelete = async() => {
         await deleteRecipe(recipe._id, recipe.authorId);
-        redirect('/dashboard/user/my-recipe');
+        redirect('/dashboard/user/added-recipe');
     }
   return (
     <Modal className="">

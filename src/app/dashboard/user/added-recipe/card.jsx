@@ -53,7 +53,7 @@ const RecipeCard = ({ recipe }) => {
                 {/* Buttons */}
                 <div className="mt-auto space-y-2">
                     <Link 
-                        href={`/dashboard/user/my-recipe/${id}`}
+                        href={`/recipe/${id}`}
                         className="w-full block text-center bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium text-sm px-4 py-2 rounded-lg transition-colors"
                     >
                         View Details

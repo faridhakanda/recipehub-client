@@ -208,6 +208,7 @@ const Navbar = () => {
                             
                             user?.role === 'user' ? (
                                 <>
+                                <Link href={'/dashboard/user'}>Dashboard</Link>
                                 <div className='flex items-center gap-2'>
                                     
                                     <Dropdown>
@@ -240,6 +241,7 @@ const Navbar = () => {
                             </>
                             ) : (
                                 <>
+                                <Link href={'/dashboard/admin'}>Dashboard</Link>
                                 <div className='flex items-center gap-2'>
                                     
                                     <Dropdown>
@@ -298,6 +300,7 @@ const Navbar = () => {
                                 user?.role === 'user' ? (
                                    
                                 <div className='flex items-center gap-2'>
+                                <Link href={'/dashboard/user'}>Dashboard</Link>
                                 <Dropdown>
                                         <Button 
                                             className="w-8 h-8 min-w-0 p-0 rounded-full overflow-hidden bg-transparent hover:bg-gray-100 dark:hover:bg-zinc-800"
@@ -326,7 +329,7 @@ const Navbar = () => {
                                
                                 (
                                     <div className='flex items-center gap-2'>
-                                
+                                    <Link href={'/dashboard/admin'}>Dashboard</Link>
                                 <Dropdown>
                                         <Button 
                                             className="w-8 h-8 min-w-0 p-0 rounded-full overflow-hidden bg-transparent hover:bg-gray-100 dark:hover:bg-zinc-800"

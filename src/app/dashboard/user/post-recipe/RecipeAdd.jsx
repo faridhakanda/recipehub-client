@@ -110,7 +110,7 @@ const RecipePost = ({ user }) => {
         
         if(payload.insertedId) {
             const savedRecipe = {...newRecipeData, _id: payload.insertedId};
-            redirect('/recipe');
+            redirect('/dashboard/user/added-recipe');
             setRecipe(savedRecipe);
         }
         

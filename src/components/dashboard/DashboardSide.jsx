@@ -4,7 +4,7 @@
 //import { auth } from "@/lib/auth";
 //import { getUserSession } from "@/lib/core/session";
 import { getUserSession } from "@/lib/core/session";
-import { LayoutSideContentLeft, Bell,Briefcase, Envelope, Gear, House, Magnifier, Person, Star, FloppyDisk, Circle, CirclePlus } from "@gravity-ui/icons";
+import { LayoutSideContentLeft, Bell,Briefcase, Envelope, Gear, House, Magnifier, Person, Star, FloppyDisk, Circle, CirclePlus, CloudCheck, ShoppingCart } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
 //import { getSession } from "better-auth/api";
 import Link from "next/link";
@@ -14,13 +14,12 @@ export async function DashboardSidebar() {
     const user = await getUserSession();
     const userItems = [
         { icon: House, href: "/dashboard/user", label: "Home" },
-        { icon: Briefcase, href: "/dashboard/user/my-recipe", label: "My Recipe" },
-        { icon: FloppyDisk, href: "/dashboard/user/saved-recipe", label: 'Saved Recipe'},
-        { icon: CirclePlus, href: "/dashboard/user/add-recipe", label: "Add Recipe" },
+        { icon: CirclePlus, href: "/dashboard/user/post-recipe", label: "Post Recipe" },
+        { icon: Briefcase, href: "/dashboard/user/added-recipe", label: "Added Recipe" },
+        { icon: ShoppingCart, href: "/dashboard/user/purchase-recipe", label: "Purchase Recipe" },
+        { icon: CloudCheck, href: "/dashboard/user/saved-recipe", label: "Saved Recipe" },
         { icon: Star, href: "/dashboard/user/favorite-recipe", label: "Favorite Recipe" },
-        // { icon: Envelope, href: "/messages", label: "Messages" },
         { icon: Person, href: "/dashboard/user/profile", label: "Profile" },
-        // { icon: Gear, href: "/settings", label: "Settings" },
     ]
     // const recruiterItems = [
     //     { icon: House, href: "/dashboard/recruiter", label: "Home" },

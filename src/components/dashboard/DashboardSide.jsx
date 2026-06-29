@@ -4,7 +4,7 @@
 //import { auth } from "@/lib/auth";
 //import { getUserSession } from "@/lib/core/session";
 import { getUserSession } from "@/lib/core/session";
-import { LayoutSideContentLeft, Bell,Briefcase, Envelope, Gear, House, Magnifier, Person, Star, FloppyDisk, Circle, CirclePlus, CloudCheck, ShoppingCart, Persons } from "@gravity-ui/icons";
+import { LayoutSideContentLeft, Bell,Briefcase, Envelope, Gear, House, Magnifier, Person, Star, FloppyDisk, Circle, CirclePlus, CloudCheck, ShoppingCart, Persons, PencilToSquare } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
 //import { getSession } from "better-auth/api";
 import Link from "next/link";
@@ -25,6 +25,7 @@ export async function DashboardSidebar() {
     const adminItems = [
         { icon: House, href: "/dashboard/admin", label: "Home" },
         { icon: Persons, href: "/dashboard/admin/users", label: "Users" },
+        { icon: PencilToSquare, href: "/dashboard/admin/recipes", label: "Recipes" },
         // { icon: Magnifier, href: "/dashboard/admin/recipe", label: "Recipe" },
         // { icon: Bell, href: "/dashboard/admin/features", label: "Post A Job" },
         // { icon: Briefcase, href: "/dashboard/admin/companies", label: "Admin Company" },

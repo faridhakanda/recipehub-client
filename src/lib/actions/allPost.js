@@ -51,3 +51,9 @@ export const recipeSave = async(id, recipeInfomationWithUser) => {
 export const recipeFavorite = async(id, recipeInfomationWithUser) => {
     return protectedMutation(`/api/recipe-favorite/${id}`, recipeInfomationWithUser);
 }
+
+
+// admin feature post
+export const featurePost = async(recipeId, Data) => {
+    return protectedMutation(`/api/admin/feature-recipe/${recipeId}`, Data);
+}

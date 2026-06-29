@@ -14,7 +14,7 @@ const UserCard = ({ user, onDelete }) => {
         if (!confirm(`Are you sure you want to delete ${user?.name || 'this user'}?`)) {
             return;
         }
-
+        
         setLoading(true);
         try {
             const response = await userDelete(user?._id);
@@ -69,7 +69,7 @@ const UserCard = ({ user, onDelete }) => {
             </span>
         );
     };
-
+    
     return (
         <div className="bg-white my-1 dark:bg-zinc-900 rounded-xl shadow-sm border border-gray-200 dark:border-zinc-800 hover:shadow-md transition-all duration-200 p-4">
             <div className="flex items-center gap-4">

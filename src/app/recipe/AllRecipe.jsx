@@ -24,7 +24,7 @@ const AllRecipe = ({ filters, recipes, total }) => {
 
     //const totalRecipe = total;
     const totalRecipe = total;
-    const itemsPerPage = 2;
+    const itemsPerPage = 20;
     const totalPage = Math.ceil(totalRecipe / itemsPerPage);
 
     const getPageNumbers = () => {

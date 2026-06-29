@@ -26,3 +26,14 @@ export const userDelete = async(userId) => {
     });
     return res.json();
 }
+
+export const recipeDeleteByAdmin = async(recipeId) => {
+    const res = await fetch(`${SERVER_URL}/api/admin/recipes/${recipeId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            ...await authHeader()
+        }
+    });
+    return res.json();
+}

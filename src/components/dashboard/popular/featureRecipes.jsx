@@ -6,7 +6,7 @@ import RecipeCard from './RecipeCard';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-const PopularRecipes = ({ recipes }) => {
+const FeatureRecipes = ({ recipes }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -72,7 +72,7 @@ const PopularRecipes = ({ recipes }) => {
         return (
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
                 <div className="text-center py-12">
-                    <p className="text-gray-500 dark:text-gray-400">No popular recipes available</p>
+                    <p className="text-gray-500 dark:text-gray-400">No Feature recipes available</p>
                 </div>
             </div>
         );
@@ -97,7 +97,7 @@ const PopularRecipes = ({ recipes }) => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.2, duration: 0.5 }}
                     >
-                        🔥 Popular Recipes
+                        🔥 Features Recipes
                     </motion.h2>
                     <motion.p 
                         className="text-gray-500 dark:text-gray-400 text-sm mt-1"
@@ -140,13 +140,13 @@ const PopularRecipes = ({ recipes }) => {
                             animationDelay: `${index * 100}ms`,
                         }}
                     >
-                        <RecipeCard recipe={recipe} />
+                        <RecipeCard recipe={recipe.recipe} />
                     </motion.div>
                 ))}
             </motion.div>
             
             {/* Decorative bottom element */}
-            <motion.div
+            {/* <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
@@ -166,9 +166,9 @@ const PopularRecipes = ({ recipes }) => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                 </Link>
-            </motion.div>
+            </motion.div> */}
         </div>
     );
 };
 
-export default PopularRecipes;
+export default FeatureRecipes;

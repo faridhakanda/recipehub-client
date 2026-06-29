@@ -4,7 +4,7 @@
 //import { auth } from "@/lib/auth";
 //import { getUserSession } from "@/lib/core/session";
 import { getUserSession } from "@/lib/core/session";
-import { LayoutSideContentLeft, Bell,Briefcase, Envelope, Gear, House, Magnifier, Person, Star, FloppyDisk, Circle, CirclePlus, CloudCheck, ShoppingCart } from "@gravity-ui/icons";
+import { LayoutSideContentLeft, Bell,Briefcase, Envelope, Gear, House, Magnifier, Person, Star, FloppyDisk, Circle, CirclePlus, CloudCheck, ShoppingCart, Persons } from "@gravity-ui/icons";
 import { Button, Drawer } from "@heroui/react";
 //import { getSession } from "better-auth/api";
 import Link from "next/link";
@@ -21,34 +21,19 @@ export async function DashboardSidebar() {
         { icon: Star, href: "/dashboard/user/favorite-recipe", label: "Favorite Recipe" },
         { icon: Person, href: "/dashboard/user/profile", label: "Profile" },
     ]
-    // const recruiterItems = [
-    //     { icon: House, href: "/dashboard/recruiter", label: "Home" },
-    //     { icon: Magnifier, href: "/dashboard/recruiter/jobs", label: "Jobs" },
-    //     { icon: Bell, href: "/dashboard/recruiter/jobs/new", label: "Post A Job" },
-    //     { icon: Briefcase, href: "/dashboard/recruiter/company", label: "Recruiter Profile" },
-    //     { icon: Envelope, href: "/messages", label: "Messages" },
-    //     { icon: Person, href: "/profile", label: "Profile" },
-    //     { icon: Gear, href: "/settings", label: "Settings" },
-    // ]
+    
     const adminItems = [
         { icon: House, href: "/dashboard/admin", label: "Home" },
-        { icon: Magnifier, href: "/dashboard/admin/jobs", label: "Jobs" },
-        { icon: Bell, href: "/dashboard/admin/jobs/new", label: "Post A Job" },
+        { icon: Persons, href: "/dashboard/admin/users", label: "Users" },
+        { icon: Magnifier, href: "/dashboard/admin/recipe", label: "Recipe" },
+        { icon: Bell, href: "/dashboard/admin/features", label: "Post A Job" },
         { icon: Briefcase, href: "/dashboard/admin/companies", label: "Admin Company" },
         { icon: Envelope, href: "/messages", label: "Messages" },
         { icon: Person, href: "/profile", label: "Profile" },
-        { icon: Person, href: "/dashboard/admin/users", label: "Users" },
+        
         { icon: Gear, href: "/settings", label: "Settings" },
     ]
-    // const navItems = [
-    //     { icon: House, href: "/dashboard", label: "Home" },
-    //     { icon: Magnifier, href: "/dashboard/recruiter/jobs", label: "Jobs" },
-    //     { icon: Bell, href: "/dashboard/recruiter/jobs/new", label: "Post A Job" },
-    //     { icon: Briefcase, href: "/dashboard/recruiter/company", label: "Company Profile" },
-    //     { icon: Envelope, href: "/messages", label: "Messages" },
-    //     { icon: Person, href: "/profile", label: "Profile" },
-    //     { icon: Gear, href: "/settings", label: "Settings" },
-    // ];
+    
     const navLinksMap = {
         user: userItems,
         //recruiter: recruiterItems,

@@ -22,7 +22,6 @@ const PurchaseRecipePage = async() => {
                                     <span>🍳</span>
                                     My Purchased Recipe Collection
                                 </h1>
-                                <p>Recipe length of purchase: {recipes.length}</p>
                                 <p className="text-blue-100 dark:text-blue-200 mt-1 sm:mt-2 text-xs sm:text-sm md:text-base">
                                     Discover and explore delicious recipes from our community
                                 </p>

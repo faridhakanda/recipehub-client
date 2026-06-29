@@ -40,7 +40,7 @@ const RecipeDetailsPage = async ({ params }) => {
     
     try {
         const { id } = await params;
-        console.log('current id recipe is: ', id);
+        //console.log('current id recipe is: ', id);
         
         recipeDetails = await getRecipeById(id);
         

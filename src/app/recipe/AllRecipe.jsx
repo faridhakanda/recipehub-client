@@ -14,7 +14,7 @@ import { Pagination } from '@heroui/react';
 
 const AllRecipe = ({ filters, recipes, total }) => {
     //const recipes =  getAllRecipe();
-    console.log('all recipe: ', recipes);
+    //console.log('all recipe: ', recipes);
     //const router = useRouter();
     
     const [searchQuery, setSearchQuery] = useState(filters.search || '');

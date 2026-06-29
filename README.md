@@ -1,8 +1,8 @@
-#### RecipeHub
+# RecipeHub
 ## RecipeHub is a recipe sharing platform.
-# Here any of chef can share her recipe with other. Chef can also sell her special recipe and he can post  unlimited recipe if her get subscription.
+#### Here any of chef can share her recipe with other. Chef can also sell her special recipe and he can post  unlimited recipe if her get subscription.
 
-# Any of individual person also can buy there choose recipe.
+##### Any of individual person also can buy there choose recipe.
 
 ## Uses Tools and Technologies in this project
 ### This is a MERN Stack project 

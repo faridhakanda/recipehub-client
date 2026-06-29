@@ -10,6 +10,9 @@ export const getAllUsers = async() => {
     return protectedFetch(`/api/users`);
 }
 
+export const getPopularRecipe = async() => {
+    return serverFetch('/api/popular-recipe');
+}
 
 // fetch recipe by user id who created
 export const getUserAllRecipeByUserId = async(id) => {

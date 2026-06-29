@@ -27,7 +27,7 @@ const RecipeCard = ({ recipe }) => {
                     </div>
                 )}
             </div>
-
+            
             {/* Content */}
             <div className="p-3 sm:p-4 flex-1 flex flex-col">
                 {/* Recipe Name */}

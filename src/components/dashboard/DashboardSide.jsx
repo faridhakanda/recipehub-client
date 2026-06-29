@@ -25,13 +25,13 @@ export async function DashboardSidebar() {
     const adminItems = [
         { icon: House, href: "/dashboard/admin", label: "Home" },
         { icon: Persons, href: "/dashboard/admin/users", label: "Users" },
-        { icon: Magnifier, href: "/dashboard/admin/recipe", label: "Recipe" },
-        { icon: Bell, href: "/dashboard/admin/features", label: "Post A Job" },
-        { icon: Briefcase, href: "/dashboard/admin/companies", label: "Admin Company" },
-        { icon: Envelope, href: "/messages", label: "Messages" },
-        { icon: Person, href: "/profile", label: "Profile" },
+        // { icon: Magnifier, href: "/dashboard/admin/recipe", label: "Recipe" },
+        // { icon: Bell, href: "/dashboard/admin/features", label: "Post A Job" },
+        // { icon: Briefcase, href: "/dashboard/admin/companies", label: "Admin Company" },
+        // { icon: Envelope, href: "/messages", label: "Messages" },
+        // { icon: Person, href: "/profile", label: "Profile" },
         
-        { icon: Gear, href: "/settings", label: "Settings" },
+        // { icon: Gear, href: "/settings", label: "Settings" },
     ]
     
     const navLinksMap = {

@@ -26,6 +26,7 @@ const SignUpPage = () => {
         image: user?.imageUrl,
         role: "user",
         plan: "free",
+        status: "active"
     })
     if (data) {
         //router.push('/signin');

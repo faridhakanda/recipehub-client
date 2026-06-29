@@ -11,9 +11,9 @@ const UserPage = async () => {
     const recipeSave = await recipeSaveByUser(user?.id);
     const recipeFavorite = await recipeFavoriteByUser(user?.id);
 
-    console.log('total like: ', recipeLike.data);
+    //console.log('total like: ', recipeLike.data);
     const recipeLikeLength = recipeLike.data.length;
-    console.log('Recipe Like count: ', recipeLikeLength);
+    //console.log('Recipe Like count: ', recipeLikeLength);
     
     
 

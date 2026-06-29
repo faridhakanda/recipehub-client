@@ -14,3 +14,15 @@ export const deleteRecipe = async(recipeId, authorId) => {
     });
     return res.json()
 }
+
+
+export const userDelete = async(userId) => {
+    const res = await fetch(`${SERVER_URL}/api/admin/users/${userId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            ...await authHeader()
+        }
+    });
+    return res.json();
+}

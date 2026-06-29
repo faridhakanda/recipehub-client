@@ -126,7 +126,7 @@ export default async function Success({ searchParams }) {
     
 
 
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-orange-50 via-amber-50/30 to-white dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-b from-orange-50 via-amber-50/30 to-white dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 px-4">
           <div className="max-w-md w-full bg-white dark:bg-zinc-900 rounded-2xl shadow-xl p-8 text-center border border-green-100 dark:border-green-900/30">
             <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
               <CheckShape className="w-12 h-12 text-green-500 dark:text-green-400" />
@@ -150,7 +150,7 @@ export default async function Success({ searchParams }) {
 
             <Link
               href="/"
-              className="inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40"
+              className="inline-flex items-center justify-center w-full px-6 py-3 bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40"
             >
               Go to Home
             </Link>

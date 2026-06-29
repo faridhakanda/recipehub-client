@@ -1,9 +1,35 @@
 "use client";
 
+import { recipeSave } from "@/lib/actions/allPost";
+import { getUserSession } from "@/lib/core/session";
 import {Rocket} from "@gravity-ui/icons";
 import {Button, Modal} from "@heroui/react";
+import { redirect } from "next/navigation";
 
 const Save = ({ recipeDetails }) => {
+    const handleSave = async() => {
+            try {
+                const recipe = recipeDetails;
+                const user = await getUserSession();
+                const userId = user?.id;
+                const userName = user?.name;
+                const userEmail = user?.email;
+                const payloadForSave = {
+                    recipe: recipe,
+                    userId,
+                    userName,
+                    userEmail,
+                }
+                //const payload = await recipeLike(recipe._id, payloadForLike);
+                const payload = await recipeSave(recipe._id, payloadForSave)
+                if (payload.insertedId) {
+                    redirect(`/recipe/${recipe._id}`);
+                }
+            } catch(error) {
+                console.error("Error saving recipe: ", error);
+            }
+            
+        }
   return (
     <Modal>
       {/* <Button variant="secondary">Like</Button> */}
@@ -30,7 +56,7 @@ const Save = ({ recipeDetails }) => {
               </p>
             </Modal.Body>
             <Modal.Footer>
-              <Button className="w-full" slot="close">
+              <Button onClick={handleSave} className="w-full" slot="close">
                 Conform to Save
               </Button>
             </Modal.Footer>

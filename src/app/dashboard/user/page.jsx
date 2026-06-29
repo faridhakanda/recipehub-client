@@ -1,15 +1,25 @@
-import { getUserAllRecipeByUserId, recipeLikeByUser } from '@/lib/actions/allGet';
+import { getUserAllRecipeByUserId, recipeFavoriteByUser, recipeLikeByUser, recipeSaveByUser } from '@/lib/actions/allGet';
 import { getUserSession } from '@/lib/core/session';
 import React from 'react';
 
 const UserPage = async () => {
     const user = await getUserSession();
     const myAllRecipe = await getUserAllRecipeByUserId(user?.id);
+
+
+    // user like, saved and favorite recipe
     const recipeLike = await recipeLikeByUser(user?.id);
+    const recipeSave = await recipeSaveByUser(user?.id);
+    const recipeFavorite = await recipeFavoriteByUser(user?.id);
+
     console.log('total like: ', recipeLike.data);
     const recipeLikeLength = recipeLike.data.length;
     console.log('Recipe Like count: ', recipeLikeLength);
     const likeRecipes = recipeLike.data;
+
+    const savedRecipes = recipeSave.data;
+    const favoriteRecipes = recipeFavorite.data;
+
     return (
         <div className='max-w-7xl mx-auto px-4 sm:px-2 md:px-4 lg:px-4'>
             <h2>user Page</h2>
@@ -41,6 +51,13 @@ const UserPage = async () => {
                         <h2>{recipe.userName}</h2>
                     </div>
                 )}
+            </div>
+
+            <div className='bg-purple-300'>
+                <h2>Saved recipe count is: {savedRecipes.length || 0}</h2>
+            </div>
+            <div className='bg-purple-300'>
+                <h2>Favorite recipe count is: {favoriteRecipes.length || 0}</h2>
             </div>
         </div>
     );

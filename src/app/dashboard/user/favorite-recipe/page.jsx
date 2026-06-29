@@ -1,11 +1,13 @@
 import React from 'react';
 import { getUserSession } from '@/lib/core/session';
 import RecipeCard from './card';
-import { getUserAllRecipeByUserId } from '@/lib/actions/allGet';
+import { getUserAllRecipeByUserId, recipeFavoriteByUser } from '@/lib/actions/allGet';
 
 const RecipePage = async() => {
     const user = await getUserSession();
-    const recipes = await getUserAllRecipeByUserId(user?.id);
+    //const recipes = await getUserAllRecipeByUserId(user?.id);
+    const favoriteRecipes = await recipeFavoriteByUser(user?.id);
+    const recipes = favoriteRecipes.data;
     console.log('all recipe for user: ', recipes);
     
     return (
@@ -47,7 +49,7 @@ const RecipePage = async() => {
                                     className="animate-fadeIn"
                                     style={{ animationDelay: `${index * 80}ms` }}
                                 >
-                                    <RecipeCard recipe={recipe} />
+                                    <RecipeCard recipe={recipe.recipe} />
                                 </div>
                             ))}
                         </div>

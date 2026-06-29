@@ -34,9 +34,9 @@ const RecipeCard = ({ recipe }) => {
                 <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-zinc-100 mb-2 line-clamp-1">
                     {recipe.recipeName || 'Untitled Recipe'}
                 </h3>
-                
+                <h2>TransactionID: {recipe.transactionId}</h2>
                 {/* Author and Likes */}
-                <div className="flex items-center justify-between text-xs sm:text-sm text-gray-600 dark:text-zinc-400 mb-3">
+                {/* <div className="flex items-center justify-between text-xs sm:text-sm text-gray-600 dark:text-zinc-400 mb-3">
                     <div className="flex items-center gap-2">
                         <span className="font-medium truncate max-w-[120px] sm:max-w-[150px]">
                             {recipe.authorName || 'Unknown'}
@@ -48,12 +48,12 @@ const RecipeCard = ({ recipe }) => {
                         </svg>
                         <span>{recipe.likesCount || 0}</span>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Buttons */}
                 <div className="mt-auto space-y-2">
                     <Link 
-                        href={`/dashboard/user/purchase-recipe/${id}`}
+                        href={`/recipe/${recipe.recipeId}`}
                         className="w-full block text-center bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white font-medium text-sm px-4 py-2 rounded-lg transition-colors"
                     >
                         View Details

@@ -1,11 +1,13 @@
 import React from 'react';
 import { getUserSession } from '@/lib/core/session';
 import RecipeCard from './card';
-import { getUserAllRecipeByUserId } from '@/lib/actions/allGet';
+import { getUserAllRecipeByUserId, myPurchaseRecipe } from '@/lib/actions/allGet';
 
 const PurchaseRecipePage = async() => {
     const user = await getUserSession();
-    const recipes = await getUserAllRecipeByUserId(user?.id);
+    //const recipes = await getUserAllRecipeByUserId(user?.id);
+    const myRecipes = await myPurchaseRecipe(user?.id);
+    const recipes = myRecipes.data;
     console.log('all recipe for user: ', recipes);
     
     return (
@@ -20,6 +22,7 @@ const PurchaseRecipePage = async() => {
                                     <span>🍳</span>
                                     My Purchased Recipe Collection
                                 </h1>
+                                <p>Recipe length of purchase: {recipes.length}</p>
                                 <p className="text-blue-100 dark:text-blue-200 mt-1 sm:mt-2 text-xs sm:text-sm md:text-base">
                                     Discover and explore delicious recipes from our community
                                 </p>

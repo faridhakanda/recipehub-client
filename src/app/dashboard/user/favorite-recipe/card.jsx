@@ -58,10 +58,11 @@ const RecipeCard = ({ recipe }) => {
                     >
                         View Details
                     </Link>
-                    <div className="grid grid-cols-1 gap-2">
-                        {/* <UpdateRecipe recipe={recipe} /> */}
+                    {/* <UpdateRecipe recipe={recipe} /> */}
+                    {/* <div className="grid grid-cols-1 gap-2">
+                        
                         <DeleteRecipe recipe={recipe} />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

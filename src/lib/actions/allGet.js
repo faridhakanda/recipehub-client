@@ -54,8 +54,13 @@ export const recipeLikeByUser = async(id) => {
 }
 
 export const recipeSaveByUser = async(id) => {
-    return protectedFetch(`/api/recipe-favorite/${id}`);
+    return protectedFetch(`/api/recipe-save/${id}`);
 }
 export const recipeFavoriteByUser = async(id) => {
     return protectedFetch(`/api/recipe-favorite/${id}`);
+}
+
+
+export const myPurchaseRecipe = async(id) => {
+    return protectedFetch(`/api/my-purchase/${id}`);
 }

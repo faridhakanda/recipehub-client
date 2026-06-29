@@ -16,13 +16,6 @@ const Like = ({ recipeDetails}) => {
             const userName = user?.name;
             const userEmail = user?.email;
             const payloadForLike = {
-                // recipeId: recipe._id,
-                // recipeName: recipe.recipeName,
-                // recipeImage: recipe.recipeImage,
-                // authorName: recipe.authorName,
-                // authorEmail: recipe.authorEmail,
-                // likesCount: recipe.likesCount,
-                // status: recipe.status,
                 recipe: recipe,
                 userId,
                 userName,
